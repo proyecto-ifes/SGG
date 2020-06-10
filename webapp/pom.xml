@@ -122,6 +122,19 @@
             <artifactId>isis-mavendeps-webapp</artifactId>
             <type>pom</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.12</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.isis.core/isis-core-webserver -->
+        <dependency>
+            <groupId>org.apache.isis.core</groupId>
+            <artifactId>isis-core-webserver</artifactId>
+            <version>1.17.0</version>
+            <scope>runtime</scope>
+        </dependency>
 
     </dependencies>
 
