@@ -29,7 +29,7 @@
     <name>Apache Isis App - SimpleApp Simple Module</name>
 
     <properties>
-        <isis-maven-plugin.validate.appManifest>domainapp.modules.simple.SimpleModuleManifest</isis-maven-plugin.validate.appManifest>
+        <isis-maven-plugin.validate.appManifest>domainapp.modules.simple.PersonaModuleManifest</isis-maven-plugin.validate.appManifest>
 
         <maven-checkstyle-plugin.configLocation>${project.parent.basedir}/_checks/checkstyle.xml</maven-checkstyle-plugin.configLocation>
         <maven-pmd-plugin.ruleset>${project.parent.basedir}/_checks/pmd.xml</maven-pmd-plugin.ruleset>
@@ -130,14 +130,14 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
-    <profiles>
+    <!--<profiles>
         <profile>
             <id>isis-validate</id>
             <activation>
@@ -178,6 +178,6 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    </profiles>-->
 
 </project>

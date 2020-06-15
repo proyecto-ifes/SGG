@@ -139,7 +139,7 @@
     </dependencies>
 
     <profiles>
-        <profile>
+        <!--<profile>
             <id>isis-swagger</id>
             <activation>
                 <property>
@@ -180,13 +180,13 @@
                                 <artifactId>hsqldb</artifactId>
                                 <version>2.3.1</version>
                             </dependency>
-                            <!-- workaround to avoid conflict with plexus-default -->
                         </dependencies>
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
+        </profile>-->
+
+        <!--<profile>
             <id>jdbc-hsqldb</id>
             <activation>
                 <property>
@@ -199,7 +199,8 @@
                     <artifactId>hsqldb</artifactId>
                 </dependency>
             </dependencies>
-        </profile>
+        </profile>-->
+
         <profile>
             <id>jdbc-logging</id>
             <activation>
