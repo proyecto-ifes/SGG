@@ -18,27 +18,9 @@
  */
 package domainapp.modules.simple.integtests.tests;
 
-import java.sql.Timestamp;
+public class SimpleObject_IntegTest /*extends SimpleModuleIntegTestAbstract*/ {
 
-import javax.inject.Inject;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import org.apache.isis.applib.services.title.TitleService;
-import org.apache.isis.applib.services.wrapper.DisabledException;
-import org.apache.isis.applib.services.wrapper.InvalidException;
-import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong;
-import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp;
-
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.fixture.SimpleObject_persona;
-import domainapp.modules.simple.integtests.SimpleModuleIntegTestAbstract;
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
-
-    SimpleObject simpleObject;
+    /*SimpleObject simpleObject;
 
     @Before
     public void setUp() {
@@ -134,6 +116,6 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
             // then
             assertThat(timestamp).isNotNull();
         }
-    }
+    }*/
 
 }

@@ -18,54 +18,61 @@
  */
 package domainapp.modules.simple.dom.impl;
 
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.VersionStrategy;
-
-import com.google.common.collect.ComparisonChain;
-
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.Auditing;
-import org.apache.isis.applib.annotation.DomainObject;
-import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.Editing;
-import org.apache.isis.applib.annotation.Parameter;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.Property;
-import org.apache.isis.applib.annotation.Publishing;
-import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.services.i18n.TranslatableString;
+import lombok.AccessLevel;
+import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.services.title.TitleService;
 
-import lombok.AccessLevel;
-import static org.apache.isis.applib.annotation.CommandReification.ENABLED;
-import static org.apache.isis.applib.annotation.SemanticsOf.IDEMPOTENT;
-import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_YOU_SURE;
+import javax.jdo.annotations.IdentityType;
+import java.time.LocalDate;
 
-@javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE, schema = "simple")
-@javax.jdo.annotations.DatastoreIdentity(strategy=javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column="id")
-@javax.jdo.annotations.Version(strategy= VersionStrategy.DATE_TIME, column="version")
-@javax.jdo.annotations.Unique(name="SimpleObject_name_UNQ", members = {"name"})
+@javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE, schema = "gimnasio")
+@javax.jdo.annotations.DatastoreIdentity(strategy=javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column="idPersona")
+//@javax.jdo.annotations.Version(strategy= VersionStrategy.DATE_TIME, column="version")
+@javax.jdo.annotations.Unique(name="Persona_dni_UNQ", members = {"dni"})
 @DomainObject(auditing = Auditing.ENABLED)
 @DomainObjectLayout()  // causes UI events to be triggered
 @lombok.Getter @lombok.Setter
-@lombok.RequiredArgsConstructor
-public class SimpleObject implements Comparable<SimpleObject> {
+public abstract class Persona /*implements Comparable<Persona>*/ {
+
 
     @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
     @lombok.NonNull
     @Property() // editing disabled by default, see isis.properties
-    @Title(prepend = "Object: ")
-    private String name;
+    @Title(prepend = "Persona: ")
+    private String nombre;
 
-    @javax.jdo.annotations.Column(allowsNull = "true", length = 4000)
+    @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
+    @lombok.NonNull
     @Property(editing = Editing.ENABLED)
-    private String notes;
+    private String apellido;
 
+    @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
+    @lombok.NonNull
+    @Property(editing = Editing.ENABLED)
+    private String dni;
 
-    @Action(semantics = IDEMPOTENT, command = ENABLED, publishing = Publishing.ENABLED, associateWith = "name")
-    public SimpleObject updateName(
+    @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
+    @lombok.NonNull
+    @Property(editing = Editing.ENABLED)
+    private String telefono;
+
+    @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
+    @lombok.NonNull
+    @Property(editing = Editing.ENABLED)
+    private String direccion;
+
+    @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
+    @lombok.NonNull
+    @Property(editing = Editing.ENABLED)
+    private LocalDate fechaNac;
+
+    public Persona() {
+    }
+
+    /*@Action(semantics = IDEMPOTENT, command = ENABLED, publishing = Publishing.ENABLED, associateWith = "name")
+    public Persona updateName(
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "Name")
             final String name) {
@@ -87,19 +94,25 @@ public class SimpleObject implements Comparable<SimpleObject> {
         final String title = titleService.titleOf(this);
         messageService.informUser(String.format("'%s' deleted", title));
         repositoryService.remove(this);
-    }
-
+    }*/
 
     @Override
     public String toString() {
-        return getName();
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni=" + dni +
+                ", telefono=" + telefono +
+                ", fechaNac=" + fechaNac +
+                ", direccion='" + direccion + '\'' +
+                '}';
     }
 
-    public int compareTo(final SimpleObject other) {
+    /*public int compareTo(final Persona other) {
         return ComparisonChain.start()
-                .compare(this.getName(), other.getName())
+                .compare(this.getNombre(), other.getNombre())
                 .result();
-    }
+    }*/
 
 
     @javax.inject.Inject

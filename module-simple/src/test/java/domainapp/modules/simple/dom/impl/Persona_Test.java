@@ -16,21 +16,16 @@
  */
 package domainapp.modules.simple.dom.impl;
 
-import org.junit.Before;
-import org.junit.Test;
+public class Persona_Test {
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class SimpleObject_Test {
-
-    SimpleObject simpleObject;
+    /*SimpleObject simpleObject;
 
     @Before
     public void setUp() throws Exception {
         simpleObject = new SimpleObject("Foobar");
     }
 
-    public static class Name extends SimpleObject_Test {
+    public static class Name extends Persona_Test {
 
         @Test
         public void happyCase() throws Exception {
@@ -44,6 +39,6 @@ public class SimpleObject_Test {
             // then
             assertThat(simpleObject.getName()).isEqualTo(name);
         }
-    }
+    }*/
 
 }

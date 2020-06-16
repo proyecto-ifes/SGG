@@ -19,32 +19,36 @@
 
 package domainapp.modules.simple.fixture;
 
-import org.apache.isis.applib.fixturescripts.BuilderScriptAbstract;
-
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjects;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Accessors(chain = true)
-public class SimpleObjectBuilder extends BuilderScriptAbstract<SimpleObject, SimpleObjectBuilder> {
+public class SimpleObjectBuilder /*extends BuilderScriptAbstract<Persona, SimpleObjectBuilder>*/ {
 
+    /*@Getter @Setter
+    private String nombre;
     @Getter @Setter
-    private String name;
+    private String apellido;
+    @Getter @Setter
+    private Integer dni;
+    @Getter @Setter
+    private Integer telefono;
+    @Getter @Setter
+    private String direccion;
+    @Getter @Setter
+    private LocalDate fechaNac;
 
     @Getter
-    private SimpleObject object;
+    private Persona object;
 
     @Override
     protected void execute(final ExecutionContext ec) {
 
-        checkParam("name", ec, String.class);
+        checkParam("nombre", ec, String.class);
 
-        object = wrap(simpleObjects).create(name);
+        object = wrap(personas).create(nombre, apellido, dni, telefono, direccion,fechaNac);
     }
 
     @javax.inject.Inject
-    SimpleObjects simpleObjects;
+    Personas personas;*/
 
 }

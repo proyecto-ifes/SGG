@@ -18,27 +18,9 @@
  */
 package domainapp.modules.simple.integtests.tests;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.List;
+public class SimpleObjectMenu_IntegTest /*extends SimpleModuleIntegTestAbstract*/ {
 
-import javax.inject.Inject;
-
-import com.google.common.base.Throwables;
-
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.Test;
-
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjects;
-import domainapp.modules.simple.fixture.SimpleObject_persona;
-import domainapp.modules.simple.integtests.SimpleModuleIntegTestAbstract;
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
-
-    public static class ListAll extends SimpleObjectMenu_IntegTest {
+    /*public static class ListAll extends SimpleObjectMenu_IntegTest {
 
         @Test
         public void happyCase() {
@@ -114,6 +96,6 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
     }
 
     @Inject
-    SimpleObjects menu;
+    SimpleObjects menu;*/
 
 }

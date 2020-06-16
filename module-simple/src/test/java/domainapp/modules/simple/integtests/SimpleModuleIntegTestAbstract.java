@@ -18,15 +18,11 @@
  */
 package domainapp.modules.simple.integtests;
 
-import org.apache.isis.core.integtestsupport.IntegrationTestAbstract3;
+public abstract class SimpleModuleIntegTestAbstract /*extends IntegrationTestAbstract3*/ {
 
-import domainapp.modules.simple.SimpleModule;
-
-public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstract3 {
-
-    public SimpleModuleIntegTestAbstract() {
+    /*public SimpleModuleIntegTestAbstract() {
         super(new SimpleModule().withConfigurationProperty("isis.objects.editing","false"));
-    }
+    }*/
 
 
 }

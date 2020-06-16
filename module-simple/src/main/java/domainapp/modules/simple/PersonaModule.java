@@ -26,7 +26,7 @@ import org.apache.isis.applib.fixturescripts.teardown.TeardownFixtureAbstract2;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "module")
-public class SimpleModule extends ModuleAbstract {
+public class PersonaModule extends ModuleAbstract {
 
     @Override
     public FixtureScript getTeardownFixture() {

@@ -18,65 +18,53 @@
  */
 package domainapp.modules.simple.dom.impl;
 
-import java.util.List;
-
-import org.datanucleus.query.typesafe.TypesafeQuery;
-
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DomainService;
-import org.apache.isis.applib.annotation.DomainServiceLayout;
-import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.NatureOfService;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.Programmatic;
-import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
+import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 import org.apache.isis.applib.services.repository.RepositoryService;
+
+import java.util.List;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
         objectType = "simple.SimpleObjectMenu",
-        repositoryFor = SimpleObject.class
+        repositoryFor = Persona.class
 )
 @DomainServiceLayout(
         named = "Simple Objects",
         menuOrder = "10"
 )
-public class SimpleObjects {
+public class Personas {
 
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "1")
-    public List<SimpleObject> listAll() {
-        return repositoryService.allInstances(SimpleObject.class);
+    public List<Persona> listAll() {
+        return repositoryService.allInstances(Persona.class);
     }
 
 
-    @Action(semantics = SemanticsOf.SAFE)
+    /*@Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "2")
-    public List<SimpleObject> findByName(
+    public List<Persona> findByName(
             @ParameterLayout(named="Name")
             final String name
     ) {
-        TypesafeQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
-        final QSimpleObject cand = QSimpleObject.candidate();
+        TypesafeQuery<Persona> q = isisJdoSupport.newTypesafeQuery(Persona.class);
+        final QPersona cand = QPersona.candidate();
         q = q.filter(
-                cand.name.indexOf(q.stringParameter("name")).ne(-1)
+                cand.nombre.indexOf(q.stringParameter("name")).ne(-1)
         );
         return q.setParameter("name", name)
                 .executeList();
     }
 
     @Programmatic
-    public SimpleObject findByNameExact(final String name) {
-        TypesafeQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
-        final QSimpleObject cand = QSimpleObject.candidate();
+    public Persona findByNameExact(final String name) {
+        TypesafeQuery<Persona> q = isisJdoSupport.newTypesafeQuery(Persona.class);
+        final QPersona cand = QPersona.candidate();
         q = q.filter(
-                cand.name.eq(q.stringParameter("name"))
+                cand.nombre.eq(q.stringParameter("name"))
         );
         return q.setParameter("name", name)
                 .executeUnique();
@@ -84,21 +72,33 @@ public class SimpleObjects {
 
     @Programmatic
     public void ping() {
-        TypesafeQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
-        final QSimpleObject candidate = QSimpleObject.candidate();
+        TypesafeQuery<Persona> q = isisJdoSupport.newTypesafeQuery(Persona.class);
+        final QPersona candidate = QPersona.candidate();
         q.range(0,2);
-        q.orderBy(candidate.name.asc());
+        q.orderBy(candidate.nombre.asc());
         q.executeList();
     }
 
-    public static class CreateDomainEvent extends ActionDomainEvent<SimpleObjects> {}
+    public static class CreateDomainEvent extends ActionDomainEvent<Personas> {}
     @Action(domainEvent = CreateDomainEvent.class)
     @MemberOrder(sequence = "3")
-    public SimpleObject create(
-            @ParameterLayout(named="Name")
-            final String name) {
-        return repositoryService.persist(new SimpleObject(name));
-    }
+    public Persona create(
+            @ParameterLayout(named="Nombre")
+            final String nombre,
+            @ParameterLayout(named="Apellido")
+            final String apellido,
+            @ParameterLayout(named="DNI")
+            final Integer dni,
+            @ParameterLayout(named="Telefono")
+            final Integer telefono,
+            @ParameterLayout(named="Direccion")
+            final String direccion,
+            @ParameterLayout(named="FechaNac")
+            final LocalDate fechaNac
+            ) {
+
+        return repositoryService.persist(new Persona(nombre, apellido, dni, telefono, direccion,fechaNac));
+    }*/
 
     @javax.inject.Inject
     RepositoryService repositoryService;
