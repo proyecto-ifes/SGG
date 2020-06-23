@@ -122,12 +122,14 @@
             <artifactId>isis-mavendeps-webapp</artifactId>
             <type>pom</type>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.12</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.isis.core/isis-core-webserver -->
         <dependency>
             <groupId>org.apache.isis.core</groupId>
@@ -139,7 +141,7 @@
     </dependencies>
 
     <profiles>
-        <!--<profile>
+        <profile>
             <id>isis-swagger</id>
             <activation>
                 <property>
@@ -180,13 +182,13 @@
                                 <artifactId>hsqldb</artifactId>
                                 <version>2.3.1</version>
                             </dependency>
+                            <!-- workaround to avoid conflict with plexus-default -->
                         </dependencies>
                     </plugin>
                 </plugins>
             </build>
-        </profile>-->
-
-        <!--<profile>
+        </profile>
+        <profile>
             <id>jdbc-hsqldb</id>
             <activation>
                 <property>
@@ -199,7 +201,7 @@
                     <artifactId>hsqldb</artifactId>
                 </dependency>
             </dependencies>
-        </profile>-->
+        </profile>
 
         <profile>
             <id>jdbc-logging</id>
@@ -221,11 +223,12 @@
                 </dependency>
             </dependencies>
         </profile>
+
         <profile>
             <id>jdbc-postgres</id>
             <activation>
                 <property>
-                    <name>jdbc-postgres</name>
+                    <name>!skip.jdbc-postgres</name>
                 </property>
             </activation>
             <dependencies>
@@ -236,6 +239,7 @@
                 </dependency>
             </dependencies>
         </profile>
+
         <profile>
             <id>jdbc-mssql</id>
             <activation>
@@ -244,11 +248,11 @@
                 </property>
             </activation>
             <dependencies>
-               <dependency>
-                   <groupId>com.microsoft.sqlserver</groupId>
-                   <artifactId>mssql-jdbc</artifactId>
-                   <version>6.4.0.jre8</version>
-               </dependency>
+                <dependency>
+                    <groupId>com.microsoft.sqlserver</groupId>
+                    <artifactId>mssql-jdbc</artifactId>
+                    <version>6.4.0.jre8</version>
+                </dependency>
             </dependencies>
         </profile>
 
