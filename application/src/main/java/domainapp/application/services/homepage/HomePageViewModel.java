@@ -18,14 +18,14 @@
  */
 package domainapp.application.services.homepage;
 
-import java.util.List;
-
+import domainapp.modules.simple.dom.impl.persona.Persona;
+import domainapp.modules.simple.dom.impl.persona.PersonaMenu;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.Nature;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjects;
+import java.util.List;
+
 
 @DomainObject(
         nature = Nature.VIEW_MODEL,
@@ -37,10 +37,10 @@ public class HomePageViewModel {
         return TranslatableString.tr("{num} objects", "num", getObjects().size());
     }
 
-    public List<SimpleObject> getObjects() {
-        return simpleObjects.listAll();
+    public List<Persona> getObjects() {
+        return personaMenu.listAll();
     }
 
     @javax.inject.Inject
-    SimpleObjects simpleObjects;
+    PersonaMenu personaMenu;
 }

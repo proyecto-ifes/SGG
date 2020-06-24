@@ -18,25 +18,12 @@
  */
 package domainapp.modules.simple;
 
-import domainapp.modules.simple.dom.impl.Persona;
 import org.apache.isis.applib.ModuleAbstract;
-import org.apache.isis.applib.fixturescripts.FixtureScript;
-import org.apache.isis.applib.fixturescripts.teardown.TeardownFixtureAbstract2;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "module")
 public class PersonaModule extends ModuleAbstract {
-
-    @Override
-    public FixtureScript getTeardownFixture() {
-        return new TeardownFixtureAbstract2() {
-            @Override
-            protected void execute(ExecutionContext executionContext) {
-                deleteFrom(Persona.class);
-            }
-        };
-    }
 
     public static class PropertyDomainEvent<S,T>
             extends org.apache.isis.applib.services.eventbus.PropertyDomainEvent<S,T> {}

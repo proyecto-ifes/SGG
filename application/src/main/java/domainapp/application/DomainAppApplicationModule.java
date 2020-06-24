@@ -18,23 +18,21 @@
  */
 package domainapp.application;
 
-import java.util.Set;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.google.common.collect.Sets;
-
+import domainapp.modules.simple.PersonaModule;
 import org.apache.isis.applib.Module;
 import org.apache.isis.applib.ModuleAbstract;
 
-import domainapp.modules.simple.SimpleModule;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Set;
+
 
 @XmlRootElement(name = "module")
 public class DomainAppApplicationModule extends ModuleAbstract {
 
     @Override
     public Set<Module> getDependencies() {
-        return Sets.<Module>newHashSet(new SimpleModule());
+        return Sets.<Module>newHashSet(new PersonaModule());
     }
 
 }
