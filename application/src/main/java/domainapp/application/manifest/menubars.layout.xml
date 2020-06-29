@@ -64,6 +64,21 @@
             </mb3:section>
         </mb3:menu>
 
+        <mb3:menu>
+            <mb3:named>Ejercicio</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="ejercicio.SimpleObjectMenu" id="create">
+                    <cpt:named>Crear Ejercios</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="ejercicio.SimpleObjectMenu" id="findByName">
+                    <cpt:named>Buscar por nombre</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="ejercicio.SimpleObjectMenu" id="listAll">
+                    <cpt:named>Listar Todos</cpt:named>
+                </mb3:serviceAction>
+            </mb3:section>
+        </mb3:menu>
+
         <mb3:menu unreferencedActions="true">
             <mb3:named>Other</mb3:named>
         </mb3:menu>
