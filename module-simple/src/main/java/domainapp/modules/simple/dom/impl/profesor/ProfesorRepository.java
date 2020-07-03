@@ -8,7 +8,7 @@ import org.joda.time.LocalDate;
 import javax.inject.Inject;
 
 @DomainService(nature = NatureOfService.DOMAIN, repositoryFor = Profesor.class)
-public class ProfesorRepositroy {
+public class ProfesorRepository {
 
     public Profesor create(
             final String nombre,

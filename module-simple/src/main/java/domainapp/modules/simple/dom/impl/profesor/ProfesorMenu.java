@@ -31,7 +31,7 @@ public class ProfesorMenu {
             @ParameterLayout(named="FechaNac") final LocalDate fechaNac,
             @ParameterLayout(named="Estado") final Integer estado
 
-    ) {     return profesorRepositroy.create(
+    ) {     return profesorRepository.create(
                     nombre,
                     apellido,
                     dni,
@@ -42,5 +42,5 @@ public class ProfesorMenu {
                 }
 
     @Inject
-    ProfesorRepositroy profesorRepositroy;
+    ProfesorRepository profesorRepository;
 }
