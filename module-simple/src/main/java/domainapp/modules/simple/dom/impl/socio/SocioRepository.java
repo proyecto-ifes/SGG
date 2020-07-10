@@ -6,6 +6,7 @@ import org.apache.isis.applib.services.repository.RepositoryService;
 import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @DomainService(nature = NatureOfService.DOMAIN, repositoryFor = Socio.class)
 public class SocioRepository {
@@ -40,10 +41,11 @@ public class SocioRepository {
         repositoryService.persist(object);
         return object;
     }
+    public List<Socio> listAll() {
+        return repositoryService.allInstances(Socio.class);
+    }
 
     @Inject
     RepositoryService repositoryService;
 
-    /*@javax.inject.Inject
-    IsisJdoSupport isisJdoSupport;*/
 }

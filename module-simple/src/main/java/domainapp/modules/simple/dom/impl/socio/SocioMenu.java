@@ -5,6 +5,7 @@ import org.joda.time.LocalDate;
 import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -50,7 +51,12 @@ public class SocioMenu {
                 altura,
                 asistencia);
     }
-
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
+    @MemberOrder(sequence = "2")
+    public List<Socio> listAll() {
+        return socioRepository.listAll();
+    }
     @Inject
     SocioRepository socioRepository;
 
