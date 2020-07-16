@@ -2,6 +2,7 @@ package domainapp.modules.simple.dom.impl.socio;
 
 import domainapp.modules.simple.dom.impl.pagos.Pago;
 import domainapp.modules.simple.dom.impl.persona.Persona;
+import domainapp.modules.simple.dom.impl.rutina.Rutina;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import java.util.ArrayList;
@@ -49,6 +51,11 @@ public class Socio extends Persona  {
 
     @Persistent(mappedBy = "socio", dependentElement = "true")
     @Collection()
+    @Getter @Setter
+    private List<Rutina> rutina = new ArrayList<Rutina>();
+
+    @Persistent(mappedBy = "socio", dependentElement = "true")
+    @Collection()
     @Getter  @Setter
     private List<Pago> pago = new ArrayList<Pago>();
 
@@ -72,17 +79,16 @@ public class Socio extends Persona  {
         this.asistencia = asistencia;
     }
 
-    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Integer estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia, List<Pago> pago) {
+    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Integer estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia, List<Rutina> rutina, List<Pago> pago) {
         super(nombre, apellido, dni, telefono, direccion, fechaNac, estado);
         this.historiaClinica = historiaClinica;
         this.nroEmergencia = nroEmergencia;
         this.peso = peso;
         this.altura = altura;
         this.asistencia = asistencia;
+        this.rutina = rutina;
         this.pago = pago;
     }
-
-
 
     @Action()
     public Socio cargarPago(
@@ -101,6 +107,18 @@ public class Socio extends Persona  {
         getPago().add(pago);
         repositoryService.persist(pago);
 
+        return this;
+    }
+
+    @Action()
+    public Socio cargarRutina(
+            @ParameterLayout(named="Nombre: ") final String nombre
+    ){
+        final Rutina rutina = factoryService.instantiate(Rutina.class);
+        rutina.setSocio(this);
+        rutina.setNombre(nombre);
+        getRutina().add(rutina);
+        repositoryService.persist(rutina);
         return this;
     }
 
