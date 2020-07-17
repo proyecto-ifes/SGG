@@ -59,14 +59,6 @@ public class Socio extends Persona  {
     @Getter  @Setter
     private List<Pago> pago = new ArrayList<Pago>();
 
-    public List<Pago> getPago() {
-        return pago;
-    }
-
-    public void setPago(List<Pago> pago) {
-        this.pago = pago;
-    }
-
     public Socio() {
     }
 
@@ -89,6 +81,44 @@ public class Socio extends Persona  {
         this.rutina = rutina;
         this.pago = pago;
     }
+
+    @Action()
+    @ActionLayout(named = "Editar")
+    public Socio update(
+            @ParameterLayout(named = "Numero de telefono: ")
+            final Integer telefono,
+
+            @ParameterLayout(named = "Direccion: ")
+            final String direccion,
+
+            @ParameterLayout(named = "Numero de Emergencia: ")
+            final Integer nroEmergencia,
+
+            @ParameterLayout(named = "Peso: ")
+            final Integer peso,
+
+            @ParameterLayout(named = "Altura: ")
+            final Integer altura,
+
+            @ParameterLayout(named = "Historia Clinica: ")
+            final String historiaClinica
+    ){
+
+        this.setTelefono(telefono);
+        this.setDireccion(direccion);
+        this.setNroEmergencia(nroEmergencia);
+        this.setPeso(peso);
+        this.setAltura(altura);
+        this.setHistoriaClinica(historiaClinica);
+        return this;
+    }
+
+    public Integer default0Update() { return getTelefono(); }
+    public String default1Update()  { return getDireccion(); }
+    public Integer default2Update() { return getNroEmergencia(); }
+    public Integer default3Update() { return getPeso(); }
+    public Integer default4Update() { return getAltura(); }
+    public String default5Update() { return getHistoriaClinica(); }
 
     @Action()
     public Socio cargarPago(
