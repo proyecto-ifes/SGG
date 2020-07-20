@@ -2,6 +2,7 @@ package domainapp.modules.simple.dom.impl.ejercicio;
 
 
 import domainapp.modules.simple.dom.impl.rutina.Rutina;
+import domainapp.modules.simple.dom.impl.socio.Socio;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,6 +43,35 @@ public class Ejercicio {
     @javax.jdo.annotations.Column(allowsNull = "true")
     @Property(editing = Editing.ENABLED)
     private Integer series;
+
+    @Action()
+    @ActionLayout(named = "Editar")
+    public Ejercicio update(
+            @ParameterLayout(named = "Nombre del ejercicio: ")
+            final String nombreEjercicio,
+
+            @ParameterLayout(named = "Repeticiones: ")
+            final Integer repeticion,
+
+            @ParameterLayout(named = "Peso: ")
+            final Integer peso,
+
+            @ParameterLayout(named = "Series: ")
+            final Integer series
+
+    ){
+
+        this.setNombreEjercicio(nombreEjercicio);
+        this.setRepeticion(repeticion);
+        this.setPeso(peso);
+        this.setSeries(series);
+        return this;
+    }
+
+    public String default0Update() { return getNombreEjercicio(); }
+    public Integer default1Update()  { return getRepeticion(); }
+    public Integer default2Update() { return getPeso(); }
+    public Integer default3Update() { return getSeries(); }
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
