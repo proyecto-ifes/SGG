@@ -29,7 +29,8 @@ public class ProfesorMenu {
             @ParameterLayout(named="Telefono") final Integer telefono,
             @ParameterLayout(named="Direccion") final String direccion,
             @ParameterLayout(named="FechaNac") final LocalDate fechaNac,
-            @ParameterLayout(named="Estado") final Integer estado
+            @ParameterLayout(named="Estado") final Integer estado,
+            @ParameterLayout(named="Asistencia") final Boolean asistencia
 
     ) {     return profesorRepository.create(
                     nombre,
@@ -38,7 +39,8 @@ public class ProfesorMenu {
                     telefono,
                     direccion,
                     fechaNac,
-                    estado);
+                    estado,
+                    asistencia);
                 }
 
     @Inject
