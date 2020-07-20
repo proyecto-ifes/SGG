@@ -45,6 +45,19 @@ public class Rutina {
     }
 
     @Action()
+    @ActionLayout(named = "Editar")
+    public Rutina update(
+            @ParameterLayout(named = "Nombre: ")
+            final String nombre
+    ){
+        this.setNombre(nombre);
+        return this;
+    }
+
+    public String default0Update() { return getNombre(); }
+
+
+    @Action()
     public Rutina cargarEjercicio(
             @ParameterLayout(named="Nombre Ejercicio: ") final String nombreEjercicio,
             @ParameterLayout(named="Repeticion: ") final Integer repeticion,
