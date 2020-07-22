@@ -1,6 +1,7 @@
 package domainapp.modules.simple.dom.impl.profesor;
 
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import domainapp.modules.simple.dom.impl.persona.Persona;
 import domainapp.modules.simple.dom.impl.socio.Socio;
 import org.apache.isis.applib.annotation.*;
@@ -24,7 +25,7 @@ public class Profesor extends Persona {
 
     }
 
-    public Profesor(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Integer estado, Boolean asistencia) {
+    public Profesor(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado, Boolean asistencia) {
         super(nombre, apellido, dni, telefono, direccion, fechaNac, estado);
         this.asistencia = asistencia;
     }

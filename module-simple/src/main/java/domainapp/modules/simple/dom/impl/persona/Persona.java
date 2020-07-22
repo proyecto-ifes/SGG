@@ -18,6 +18,7 @@
  */
 package domainapp.modules.simple.dom.impl.persona;
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import lombok.AccessLevel;
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.message.MessageService;
@@ -72,12 +73,12 @@ public abstract class Persona /*implements Comparable<Persona>*/ {
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
     @Property(editing = Editing.ENABLED)
-    private Integer estado;
+    private Estado estado;
 
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Integer estado) {
+    public Persona(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;

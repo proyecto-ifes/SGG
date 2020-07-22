@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dom.impl.socio;
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import org.apache.isis.applib.annotation.*;
 import org.joda.time.LocalDate;
 import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
@@ -29,7 +30,7 @@ public class SocioMenu {
             @ParameterLayout(named="Telefono") final Integer telefono,
             @ParameterLayout(named="Direccion") final String direccion,
             @ParameterLayout(named="FechaNac") final LocalDate fechaNac,
-            @ParameterLayout(named="Estado") final Integer estado,
+            @ParameterLayout(named="Estado") final Estado estado,
             @ParameterLayout(named="HistoriaClinica") final String historiaClinica,
             @ParameterLayout(named="NroEmergencia") final Integer nroEmergencia,
             @ParameterLayout(named="Peso") final Integer peso,

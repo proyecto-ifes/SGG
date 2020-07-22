@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dom.impl.socio;
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import domainapp.modules.simple.dom.impl.pagos.Pago;
 import domainapp.modules.simple.dom.impl.persona.Persona;
 import domainapp.modules.simple.dom.impl.rutina.Rutina;
@@ -11,9 +12,7 @@ import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.joda.time.LocalDate;
 
-import javax.inject.Inject;
 import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import java.util.ArrayList;
@@ -62,7 +61,7 @@ public class Socio extends Persona  {
     public Socio() {
     }
 
-    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Integer estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia) {
+    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia) {
         super(nombre, apellido, dni, telefono, direccion, fechaNac, estado);
         this.historiaClinica = historiaClinica;
         this.nroEmergencia = nroEmergencia;
@@ -71,7 +70,7 @@ public class Socio extends Persona  {
         this.asistencia = asistencia;
     }
 
-    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Integer estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia, List<Rutina> rutina, List<Pago> pago) {
+    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia, List<Rutina> rutina, List<Pago> pago) {
         super(nombre, apellido, dni, telefono, direccion, fechaNac, estado);
         this.historiaClinica = historiaClinica;
         this.nroEmergencia = nroEmergencia;

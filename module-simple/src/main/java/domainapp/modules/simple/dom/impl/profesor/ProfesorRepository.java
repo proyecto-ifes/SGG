@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dom.impl.profesor;
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.services.repository.RepositoryService;
@@ -17,7 +18,7 @@ public class ProfesorRepository {
             final Integer telefono,
             final String direccion,
             final LocalDate fechaNac,
-            final Integer estado,
+            final Estado estado,
             final Boolean asistencia
 
     ){

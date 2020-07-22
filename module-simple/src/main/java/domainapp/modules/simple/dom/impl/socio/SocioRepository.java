@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dom.impl.socio;
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.services.repository.RepositoryService;
@@ -18,7 +19,7 @@ public class SocioRepository {
             final Integer telefono,
             final String direccion,
             final LocalDate fechaNac,
-            final Integer estado,
+            final Estado estado,
             final String historiaClinica,
             final Integer nroEmergencia,
             final Integer peso,
