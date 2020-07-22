@@ -120,7 +120,8 @@ public class Socio extends Persona  {
     public String default5Update() { return getHistoriaClinica(); }
 
     @Action()
-    public Socio cargarPago(
+    @ActionLayout(named = "Cargar Pago")
+    public Socio addPago(
             @ParameterLayout(named="Dias Por Semana") final int diasPorSem,
             @ParameterLayout(named="Monto a Pagar") final int monto,
             @ParameterLayout(named="Fecha de Pago") final LocalDate fechaDePago,
@@ -140,7 +141,8 @@ public class Socio extends Persona  {
     }
 
     @Action()
-    public Socio cargarRutina(
+    @ActionLayout(named = "Cargar Rutina")
+    public Socio addRutina(
             @ParameterLayout(named="Nombre: ") final String nombre
     ){
         final Rutina rutina = factoryService.instantiate(Rutina.class);

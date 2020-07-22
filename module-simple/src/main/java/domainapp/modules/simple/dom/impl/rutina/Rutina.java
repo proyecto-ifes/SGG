@@ -56,9 +56,9 @@ public class Rutina {
 
     public String default0Update() { return getNombre(); }
 
-
     @Action()
-    public Rutina cargarEjercicio(
+    @ActionLayout(named = "Cargar Ejercicio")
+    public Rutina addEjercicio(
             @ParameterLayout(named="Nombre Ejercicio: ") final String nombreEjercicio,
             @ParameterLayout(named="Repeticion: ") final Integer repeticion,
             @ParameterLayout(named="Peso: ") final Integer peso,
