@@ -151,6 +151,25 @@ public class Socio extends Persona  {
         return this;
     }
 
+    @Programmatic
+    public void CambiarEstado(Estado estado){
+        this.setEstado(estado);
+    }
+
+    @Action()
+    @ActionLayout(named = "Activar")
+    public Socio Activo(){
+        CambiarEstado(Estado.Activo);
+        return this;
+    }
+
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Desactivar")
+    public Socio Inactivo(){
+        CambiarEstado(Estado.Inactivo);
+        return this;
+    }
+
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
