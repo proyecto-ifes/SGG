@@ -22,26 +22,26 @@ import javax.jdo.annotations.PersistenceCapable;
 public class Ejercicio {
 
     @javax.jdo.annotations.Column(allowsNull = "false")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @Getter @Setter
     private Rutina rutina;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @Title(prepend = "Ejercicio: ")
     private String nombreEjercicio;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Integer repeticion;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Integer peso;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Integer series;
 
     @Action()

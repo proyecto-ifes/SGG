@@ -18,7 +18,7 @@ import javax.jdo.annotations.PersistenceCapable;
 public class Profesor extends Persona {
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Boolean asistencia;
 
     public Profesor(){

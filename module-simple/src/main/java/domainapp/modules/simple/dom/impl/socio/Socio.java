@@ -12,6 +12,7 @@ import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.joda.time.LocalDate;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -29,23 +30,23 @@ public class Socio extends Persona  {
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private String historiaClinica;
 
-    @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Column(allowsNull = "true")
+    @Property()
     private Integer nroEmergencia;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Integer peso;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Integer altura;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Boolean asistencia;
 
     @Persistent(mappedBy = "socio", dependentElement = "true")

@@ -41,38 +41,38 @@ public abstract class Persona /*implements Comparable<Persona>*/ {
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property() // editing disabled by default, see isis.properties
+    @Property()
     @Title(prepend = "Persona: ")
     private String nombre;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private String apellido;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Integer dni;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Integer telefono;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private String direccion;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private LocalDate fechaNac;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private Estado estado;
 
     public Persona() {

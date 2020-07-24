@@ -21,13 +21,13 @@ import java.util.List;
 public class Rutina {
 
     @javax.jdo.annotations.Column(allowsNull = "false")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @Getter @Setter
     private Socio socio;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
     @Title(prepend = "Rutina: ")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     private String nombre;
 
     @Persistent(mappedBy = "rutina", dependentElement = "true")
