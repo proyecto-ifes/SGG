@@ -15,84 +15,41 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @javax.jdo.annotations.DatastoreIdentity(strategy=javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column="idPago")
 @DomainObject(auditing = Auditing.ENABLED)
 @DomainObjectLayout()
-public class Pago  implements  Comparable<Pago>{
+@lombok.Getter @lombok.Setter
+public class Pago  {
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @Getter @Setter
     private Socio socio;
 
-
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     //cantidad de dias que entrena a la semana
     private int diasPorSem;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     //total a pagar
     private int monto;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @XmlJavaTypeAdapter(JodaDateTimeStringAdapter.ForJaxb.class)
+    @Title(prepend = "Pago: ")
     private LocalDate fechaDePago;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @XmlJavaTypeAdapter(JodaDateTimeStringAdapter.ForJaxb.class)
     private LocalDate proximoPago;
 
 
-    public Socio getSocio() {
-        return socio;
-    }
-
-    public void setSocio(Socio socio) {
-        this.socio = socio;
-    }
-
-    public int getDiasPorSem() {
-        return diasPorSem;
-    }
-
-    public void setDiasPorSem(int diasPorSem) {
-        this.diasPorSem = diasPorSem;
-    }
-
-    public int getMonto() {
-        return monto;
-    }
-
-    public void setMonto(int monto) {
-        this.monto = monto;
-    }
-
-    public LocalDate getFechaDePago() {
-        return fechaDePago;
-    }
-
-    public void setFechaDePago(LocalDate fechaDePago) {
-        this.fechaDePago = fechaDePago;
-    }
-
-    public LocalDate getProximoPago() {
-        return proximoPago;
-    }
-
-    public void setProximoPago(LocalDate proximoPago) {
-        this.proximoPago = proximoPago;
-    }
-
-    @Override
-    public int compareTo(Pago o) {
-        return org.apache.isis.applib.util.ObjectContracts.compare(this, o, "socio", "diasPorSem", "monto", "fechaDePago", "proximoPago"  );
-    }
 
     @Override
     public String toString() {
