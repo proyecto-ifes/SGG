@@ -40,6 +40,7 @@
                                 <cpt:property id="monto" namedEscaped="true"/>
                                 <cpt:property id="fechaDePago" namedEscaped="true"/>
                                 <cpt:property id="proximoPago" namedEscaped="true"/>
+                                <cpt:property id="estado" namedEscaped="true"/>
 
                             </cpt:fieldSet>
                         </bs3:col>

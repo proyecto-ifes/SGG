@@ -1,5 +1,7 @@
 package domainapp.modules.simple.dom.impl.pagos;
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
+import domainapp.modules.simple.dom.impl.profesor.Profesor;
 import domainapp.modules.simple.dom.impl.socio.Socio;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,17 +51,29 @@ public class Pago  {
     @XmlJavaTypeAdapter(JodaDateTimeStringAdapter.ForJaxb.class)
     private LocalDate proximoPago;
 
+    @javax.jdo.annotations.Column(allowsNull = "false")
+    @lombok.NonNull
+    @Property()
+    private Estado estado;
 
-
-    @Override
-    public String toString() {
-        return "Pago{" +
-                "socio=" + socio +
-                ", diasPorSem=" + diasPorSem +
-                ", monto=" + monto +
-                ", fechaDePago=" + fechaDePago +
-                ", proximoPago=" + proximoPago +
-                '}';
+    @Programmatic
+    public void CambiarEstado(Estado estado){
+        this.setEstado(estado);
     }
+
+    @Action()
+    @ActionLayout(named = "Activar")
+    public Pago Activo(){
+        CambiarEstado(Estado.Activo);
+        return this;
+    }
+
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Desactivar")
+    public Pago Inactivo(){
+        CambiarEstado(Estado.Inactivo);
+        return this;
+    }
+
 
 }
