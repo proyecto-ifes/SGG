@@ -51,4 +51,23 @@ public class Profesor extends Persona {
     public Integer default0Update() { return getTelefono(); }
     public String default1Update()  { return getDireccion(); }
     public Boolean default2Update() { return getAsistencia(); }
+
+    @Programmatic
+    public void CambiarEstado(Estado estado){
+        this.setEstado(estado);
+    }
+
+    @Action()
+    @ActionLayout(named = "Activar")
+    public Profesor Activo(){
+        CambiarEstado(Estado.Activo);
+        return this;
+    }
+
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Desactivar")
+    public Profesor Inactivo(){
+        CambiarEstado(Estado.Inactivo);
+        return this;
+    }
 }
