@@ -144,11 +144,13 @@ public class Socio extends Persona  {
     @Action()
     @ActionLayout(named = "Cargar Rutina")
     public Socio addRutina(
-            @ParameterLayout(named="Nombre: ") final String nombre
+            @ParameterLayout(named="Nombre: ") final String nombre,
+            @ParameterLayout(named="Estado: ") final Estado estado
     ){
         final Rutina rutina = factoryService.instantiate(Rutina.class);
         rutina.setSocio(this);
         rutina.setNombre(nombre);
+        rutina.setEstado(estado);
         getRutina().add(rutina);
         repositoryService.persist(rutina);
         return this;

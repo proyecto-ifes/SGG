@@ -1,6 +1,7 @@
 package domainapp.modules.simple.dom.impl.rutina;
 
 import domainapp.modules.simple.dom.impl.ejercicio.Ejercicio;
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import domainapp.modules.simple.dom.impl.socio.Socio;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,6 +31,11 @@ public class Rutina {
     @Property()
     private String nombre;
 
+    @javax.jdo.annotations.Column(allowsNull = "false")
+    @lombok.NonNull
+    @Property()
+    private Estado estado;
+
     @Persistent(mappedBy = "rutina", dependentElement = "true")
     @Collection()
     @Getter @Setter
@@ -38,9 +44,10 @@ public class Rutina {
     public Rutina() {
     }
 
-    public Rutina(Socio socio, String nombre, List<Ejercicio> ejercicio) {
+    public Rutina(Socio socio, String nombre, Estado estado, List<Ejercicio> ejercicio) {
         this.socio = socio;
         this.nombre = nombre;
+        this.estado = estado;
         this.ejercicio = ejercicio;
     }
 
@@ -73,6 +80,25 @@ public class Rutina {
         ejercicio.setSeries(series);
         getEjercicio().add(ejercicio);
         repositoryService.persist(ejercicio);
+        return this;
+    }
+
+    @Programmatic
+    public void CambiarEstado(Estado estado){
+        this.setEstado(estado);
+    }
+
+    @Action()
+    @ActionLayout(named = "Activar")
+    public Rutina Activo(){
+        CambiarEstado(Estado.Activo);
+        return this;
+    }
+
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Desactivar")
+    public Rutina Inactivo(){
+        CambiarEstado(Estado.Inactivo);
         return this;
     }
 

@@ -36,6 +36,7 @@
                         <bs3:col span="12">
                             <cpt:fieldSet name="Datos de la Rutina">
                                 <cpt:property id="nombre" namedEscaped="true"/>
+                                <cpt:property id="estado" namedEscaped="true"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
