@@ -39,6 +39,7 @@
                                 <cpt:property id="repeticion" namedEscaped="true"/>
                                 <cpt:property id="peso" namedEscaped="true"/>
                                 <cpt:property id="series" namedEscaped="true"/>
+                                <cpt:property id="estado" namedEscaped="true"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>

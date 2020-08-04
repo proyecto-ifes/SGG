@@ -1,6 +1,7 @@
 package domainapp.modules.simple.dom.impl.ejercicio;
 
 
+import domainapp.modules.simple.dom.impl.enums.Estado;
 import domainapp.modules.simple.dom.impl.rutina.Rutina;
 import domainapp.modules.simple.dom.impl.socio.Socio;
 import lombok.AccessLevel;
@@ -44,6 +45,11 @@ public class Ejercicio {
     @Property()
     private Integer series;
 
+    @javax.jdo.annotations.Column(allowsNull = "false")
+    @lombok.NonNull
+    @Property()
+    private Estado estado;
+
     @Action()
     @ActionLayout(named = "Editar")
     public Ejercicio update(
@@ -72,6 +78,15 @@ public class Ejercicio {
     public Integer default1Update()  { return getRepeticion(); }
     public Integer default2Update() { return getPeso(); }
     public Integer default3Update() { return getSeries(); }
+
+    public void CambiarEstado() {
+        if (rutina.getEstado() == Estado.Activo){
+            this.estado = Estado.Activo;
+        } else {
+            this.estado = Estado.Inactivo;
+        }
+        this.setEstado(estado);
+    }
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

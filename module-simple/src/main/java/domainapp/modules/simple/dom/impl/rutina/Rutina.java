@@ -69,7 +69,8 @@ public class Rutina {
             @ParameterLayout(named="Nombre Ejercicio: ") final String nombreEjercicio,
             @ParameterLayout(named="Repeticion: ") final Integer repeticion,
             @ParameterLayout(named="Peso: ") final Integer peso,
-            @ParameterLayout(named="Series: ") final Integer series
+            @ParameterLayout(named="Series: ") final Integer series,
+            @ParameterLayout(named="Estado: ") final Estado estado
 
     ){
         final Ejercicio ejercicio = factoryService.instantiate(Ejercicio.class);
@@ -78,6 +79,7 @@ public class Rutina {
         ejercicio.setRepeticion(repeticion);
         ejercicio.setPeso(peso);
         ejercicio.setSeries(series);
+        ejercicio.setEstado(estado);
         getEjercicio().add(ejercicio);
         repositoryService.persist(ejercicio);
         return this;
@@ -86,6 +88,7 @@ public class Rutina {
     @Programmatic
     public void CambiarEstado(Estado estado){
         this.setEstado(estado);
+        cambiarEstadoEjercicio();
     }
 
     @Action()
@@ -100,6 +103,12 @@ public class Rutina {
     public Rutina Inactivo(){
         CambiarEstado(Estado.Inactivo);
         return this;
+    }
+
+    public void cambiarEstadoEjercicio() {
+        for (Ejercicio ejercicio : ejercicio){
+            ejercicio.CambiarEstado();
+        }
     }
 
     @javax.inject.Inject
