@@ -52,12 +52,45 @@ public class SocioMenu {
                 altura,
                 asistencia);
     }
+
+    @Action()
+    @ActionLayout(named = "Buscar Socio por Apellido")
+    @MemberOrder(sequence = "5")
+    /**
+     * Este metodo permite encontrar una Persona en particular
+     * dado un apellido
+     *
+     * @param apellido
+     * @return List<Socio>
+     */
+    public List<Socio> findByApellido(@ParameterLayout(named = "Apellido") final String apellido) {
+        return socioRepository.findByApellido(apellido);
+    }
+
+    @Action()
+    @ActionLayout(named = "Buscar Socio por Dni")
+    @MemberOrder(sequence = "6")
+    /**
+     * Este metodo permite encontrar una Persona en particular
+     * dado un dni
+     *
+     * @param dni
+     * @return List<Socio>
+     */
+    public List<Socio> findByDni(@ParameterLayout(named = "Dni") final Integer dni) {
+        return socioRepository.findByDni(dni);
+    }
+
+
+
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "2")
     public List<Socio> listAll() {
         return socioRepository.listAll();
     }
+
+
     @Inject
     SocioRepository socioRepository;
 
