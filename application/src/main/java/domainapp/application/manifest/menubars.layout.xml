@@ -41,8 +41,11 @@
                 <mb3:serviceAction objectType="socio.SimpleObjectMenu" id="create">
                     <cpt:named>Crear Socio</cpt:named>
                 </mb3:serviceAction>
-                <mb3:serviceAction objectType="socio.SimpleObjectMenu" id="findByName">
-                    <cpt:named>Buscar por nombre</cpt:named>
+                <mb3:serviceAction objectType="socio.SimpleObjectMenu" id="findByApellido">
+                    <cpt:named>Buscar Socio por Apellido</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="socio.SimpleObjectMenu" id="findByDni">
+                    <cpt:named>Buscar Socio por Dni</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="socio.SimpleObjectMenu" id="listAll">
                     <cpt:named>Listar Todos</cpt:named>
