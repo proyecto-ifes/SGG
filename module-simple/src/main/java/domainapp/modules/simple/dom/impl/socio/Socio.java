@@ -12,14 +12,25 @@ import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.joda.time.LocalDate;
 
-import javax.jdo.annotations.Column;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @PersistenceCapable(identityType= IdentityType.DATASTORE, schema="gimnasio", table="socios")
+
+@Queries({
+    @Query(name = "findByApellido", language = "JDOQL",
+            value = "SELECT "
+                + "FROM domainapp.modules.simple.dom.impl.socio.Socio "
+                + "WHERE apellido == :apellido "),
+
+    @Query(name = "findByDni", language = "JDOQL",
+            value = "SELECT "
+                    + "FROM domainapp.modules.simple.dom.impl.socio.Socio "
+                    + "WHERE dni == :dni ")
+})
+
+
 @DomainObject(auditing = Auditing.ENABLED)
 @DomainObjectLayout()  // causes UI events to be triggered
 @javax.jdo.annotations.Unique(name="Socio_dni_UNQ", members = {"dni"})
