@@ -6,6 +6,7 @@ import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -42,7 +43,35 @@ public class ProfesorMenu {
                     fechaNac,
                     estado,
                     asistencia);
-                }
+    }
+
+    @Action()
+    @ActionLayout(named = "Buscar Profesor por Apellido")
+    @MemberOrder(sequence = "5")
+    /**
+     * Este metodo permite encontrar a un Profesor en particular
+     * dado un apellido
+     *
+     * @param apellido
+     * @return List<Profesor>
+     */
+    public List<Profesor> findByApellido(@ParameterLayout(named = "Apellido") final String apellido) {
+        return profesorRepository.findByApellido(apellido);
+    }
+
+    @Action()
+    @ActionLayout(named = "Buscar Profesor por Dni")
+    @MemberOrder(sequence = "6")
+    /**
+     * Este metodo permite encontrar a un Profesor en particular
+     * dado un dni
+     *
+     * @param dni
+     * @return List<Profesor>
+     */
+    public List<Profesor> findByDni(@ParameterLayout(named = "Dni") final Integer dni) {
+        return profesorRepository.findByDni(dni);
+    }
 
     @Inject
     ProfesorRepository profesorRepository;
