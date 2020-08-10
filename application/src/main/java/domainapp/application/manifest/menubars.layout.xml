@@ -58,8 +58,11 @@
                 <mb3:serviceAction objectType="profesor.SimpleObjectMenu" id="create">
                     <cpt:named>Crear Profesor</cpt:named>
                 </mb3:serviceAction>
-                <mb3:serviceAction objectType="profesor.SimpleObjectMenu" id="findByName">
-                    <cpt:named>Buscar por nombre</cpt:named>
+                <mb3:serviceAction objectType="profesor.SimpleObjectMenu" id="findByApellido">
+                    <cpt:named>Buscar Profesor por Apellido</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="profesor.SimpleObjectMenu" id="findByDni">
+                    <cpt:named>Buscar Profesor por Dni</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="profesor.SimpleObjectMenu" id="listAll">
                     <cpt:named>Listar Todos</cpt:named>
