@@ -3,12 +3,25 @@ package domainapp.modules.simple.dom.impl.profesor;
 
 import domainapp.modules.simple.dom.impl.enums.Estado;
 import domainapp.modules.simple.dom.impl.persona.Persona;
-import domainapp.modules.simple.dom.impl.socio.Socio;
 import org.apache.isis.applib.annotation.*;
 import org.joda.time.LocalDate;
 
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Queries;
+import javax.jdo.annotations.Query;
+
+@Queries({
+        @Query(name = "findByApellido", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dom.impl.profesor.Profesor "
+                        + "WHERE apellido == :apellido "),
+
+        @Query(name = "findByDni", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dom.impl.profesor.Profesor "
+                        + "WHERE dni == :dni ")
+})
 
 @PersistenceCapable(identityType= IdentityType.DATASTORE, schema="gimnasio", table="profesores")
 @DomainObject(auditing = Auditing.ENABLED)
