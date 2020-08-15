@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.schema.utils.jaxbadapters.JodaDateTimeStringAdapter;
+import org.isisaddons.wicket.fullcalendar2.cpt.applib.CalendarEvent;
+import org.isisaddons.wicket.fullcalendar2.cpt.applib.CalendarEventable;
 import org.joda.time.LocalDate;
 
 import javax.jdo.annotations.*;
@@ -18,7 +20,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @DomainObject(auditing = Auditing.ENABLED)
 @DomainObjectLayout()
 @lombok.Getter @lombok.Setter
-public class Pago  {
+public class Pago implements CalendarEventable {
 
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
@@ -75,5 +77,21 @@ public class Pago  {
         return this;
     }
 
+    @Programmatic
+    @Override
+    public String getCalendarName() {
+        return Integer.toString(getDiasPorSem());
+    }
+
+    @Programmatic
+    public String getNotes() {
+        return socio.getNombre()+" "+ socio.getApellido();
+    }
+
+    @Programmatic
+    @Override
+    public CalendarEvent toCalendarEvent() {
+        return new CalendarEvent(getFechaDePago().toDateTimeAtStartOfDay(), getCalendarName(), getNotes());
+    }
 
 }
