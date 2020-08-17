@@ -1,16 +1,17 @@
 package domainapp.modules.simple.dom.impl.socio;
 
+import domainapp.modules.simple.dom.impl.asistencia.AsistenciaSocio;
 import domainapp.modules.simple.dom.impl.enums.Estado;
+import domainapp.modules.simple.dom.impl.enums.TipoTurno;
 import domainapp.modules.simple.dom.impl.pagos.Pago;
 import domainapp.modules.simple.dom.impl.persona.Persona;
 import domainapp.modules.simple.dom.impl.rutina.Rutina;
 import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 import javax.jdo.annotations.*;
 import java.util.ArrayList;
@@ -36,7 +37,6 @@ import java.util.List;
 @javax.jdo.annotations.Unique(name="Socio_dni_UNQ", members = {"dni"})
 @lombok.Getter @lombok.Setter
 
-
 public class Socio extends Persona  {
 
     @javax.jdo.annotations.Column(allowsNull = "false")
@@ -56,39 +56,35 @@ public class Socio extends Persona  {
     @Property()
     private Integer altura;
 
-    @javax.jdo.annotations.Column(allowsNull = "true")
-    @Property()
-    private Boolean asistencia;
-
     @Persistent(mappedBy = "socio", dependentElement = "true")
     @Collection()
-    @Getter @Setter
     private List<Rutina> rutina = new ArrayList<Rutina>();
 
     @Persistent(mappedBy = "socio", dependentElement = "true")
     @Collection()
-    @Getter  @Setter
     private List<Pago> pago = new ArrayList<Pago>();
+
+    @Persistent(mappedBy = "socio", dependentElement = "true")
+    @Collection()
+    private List<AsistenciaSocio> asistenciaSocio = new ArrayList<AsistenciaSocio>();
 
     public Socio() {
     }
 
-    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia) {
+    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura) {
         super(nombre, apellido, dni, telefono, direccion, fechaNac, estado);
         this.historiaClinica = historiaClinica;
         this.nroEmergencia = nroEmergencia;
         this.peso = peso;
         this.altura = altura;
-        this.asistencia = asistencia;
     }
 
-    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, Boolean asistencia, List<Rutina> rutina, List<Pago> pago) {
+    public Socio(String nombre, String apellido, Integer dni, Integer telefono, String direccion, LocalDate fechaNac, Estado estado, String historiaClinica, Integer nroEmergencia, Integer peso, Integer altura, List<Rutina> rutina, List<Pago> pago) {
         super(nombre, apellido, dni, telefono, direccion, fechaNac, estado);
         this.historiaClinica = historiaClinica;
         this.nroEmergencia = nroEmergencia;
         this.peso = peso;
         this.altura = altura;
-        this.asistencia = asistencia;
         this.rutina = rutina;
         this.pago = pago;
     }
@@ -130,6 +126,22 @@ public class Socio extends Persona  {
     public Integer default3Update() { return getPeso(); }
     public Integer default4Update() { return getAltura(); }
     public String default5Update() { return getHistoriaClinica(); }
+
+    @Action()
+    @ActionLayout(named = "Dar Asistencia")
+    public Socio addAsistencia(
+            @ParameterLayout(named="Tipo de Turno") final TipoTurno tipoTurno
+    ){
+
+        final AsistenciaSocio asistenciaSocio = factoryService.instantiate(AsistenciaSocio.class);
+        asistenciaSocio.setSocio(this);
+        asistenciaSocio.setTipoTurno(tipoTurno);
+        LocalDateTime fechaYHora = LocalDateTime.now();
+        asistenciaSocio.setFechaYHora(fechaYHora);
+        getAsistenciaSocio().add(asistenciaSocio);
+        repositoryService.persist(asistenciaSocio);
+        return this;
+    }
 
     @Action()
     @ActionLayout(named = "Cargar Pago")

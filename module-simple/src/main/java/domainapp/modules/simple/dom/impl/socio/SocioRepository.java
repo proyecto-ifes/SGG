@@ -26,8 +26,7 @@ public class SocioRepository {
             final String historiaClinica,
             final Integer nroEmergencia,
             final Integer peso,
-            final Integer altura,
-            final Boolean asistencia
+            final Integer altura
     ) {
         final Socio object = new Socio(
                 nombre,
@@ -40,8 +39,7 @@ public class SocioRepository {
                 historiaClinica,
                 nroEmergencia,
                 peso,
-                altura,
-                asistencia);
+                altura);
         repositoryService.persist(object);
         return object;
     }

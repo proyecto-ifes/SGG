@@ -34,8 +34,7 @@ public class SocioMenu {
             @ParameterLayout(named="HistoriaClinica") final String historiaClinica,
             @ParameterLayout(named="NroEmergencia") final Integer nroEmergencia,
             @ParameterLayout(named="Peso") final Integer peso,
-            @ParameterLayout(named="Altura") final Integer altura,
-            @ParameterLayout(named="Asistencia") final Boolean asistencia
+            @ParameterLayout(named="Altura") final Integer altura
     ) {
 
         return socioRepository.create(
@@ -49,8 +48,7 @@ public class SocioMenu {
                 historiaClinica,
                 nroEmergencia,
                 peso,
-                altura,
-                asistencia);
+                altura);
     }
 
     @Action()
