@@ -22,8 +22,7 @@ public class ProfesorRepository {
             final Integer telefono,
             final String direccion,
             final LocalDate fechaNac,
-            final Estado estado,
-            final Boolean asistencia
+            final Estado estado
 
     ){
         final Profesor object = new Profesor(
@@ -33,8 +32,7 @@ public class ProfesorRepository {
                 telefono,
                 direccion,
                 fechaNac,
-                estado,
-                asistencia);
+                estado);
         repositoryService.persist(object);
         return object;
     }

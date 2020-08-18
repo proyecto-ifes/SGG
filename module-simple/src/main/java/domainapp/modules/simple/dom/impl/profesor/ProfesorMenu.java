@@ -41,8 +41,7 @@ public class ProfesorMenu {
                     telefono,
                     direccion,
                     fechaNac,
-                    estado,
-                    asistencia);
+                    estado);
     }
 
     @Action()
