@@ -37,6 +37,9 @@ public class ProfesorRepository {
         return object;
     }
 
+    public List<Profesor> listAll() { return repositoryService.allInstances(Profesor.class); }
+
+
     @Programmatic
     public List<Profesor> findByApellido(
             final String apellido

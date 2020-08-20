@@ -43,6 +43,14 @@ public class ProfesorMenu {
                     estado);
     }
 
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
+    @MemberOrder(sequence = "2")
+    public List<Profesor> listAll() {
+        return profesorRepository.listAll();
+    }
+
+
     @Action()
     @ActionLayout(named = "Buscar Profesor por Apellido")
     @MemberOrder(sequence = "5")
