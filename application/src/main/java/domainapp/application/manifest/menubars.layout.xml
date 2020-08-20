@@ -23,12 +23,6 @@
         <mb3:menu>
             <mb3:named>Persona</mb3:named>
             <mb3:section>
-                <mb3:serviceAction objectType="persona.SimpleObjectMenu" id="create">
-                    <cpt:named>Crear Persona</cpt:named>
-                </mb3:serviceAction>
-                <mb3:serviceAction objectType="persona.SimpleObjectMenu" id="findByName">
-                    <cpt:named>Buscar por nombre</cpt:named>
-                </mb3:serviceAction>
                 <mb3:serviceAction objectType="persona.SimpleObjectMenu" id="listAll">
                     <cpt:named>Listar Todas</cpt:named>
                 </mb3:serviceAction>
@@ -66,24 +60,6 @@
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="profesor.SimpleObjectMenu" id="listAll">
                     <cpt:named>Listar Todos</cpt:named>
-                </mb3:serviceAction>
-            </mb3:section>
-        </mb3:menu>
-
-        <mb3:menu>
-            <mb3:named>Ejercicio</mb3:named>
-            <mb3:section>
-                <mb3:serviceAction objectType="ejercicio.SimpleObjectMenu" id="listAll">
-                    <cpt:named>Listar Todos</cpt:named>
-                </mb3:serviceAction>
-            </mb3:section>
-        </mb3:menu>
-
-        <mb3:menu>
-            <mb3:named>Rutina</mb3:named>
-            <mb3:section>
-                <mb3:serviceAction objectType="rutina.SimpleObjectMenu" id="listAll">
-                    <cpt:named>Listar Todas</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>

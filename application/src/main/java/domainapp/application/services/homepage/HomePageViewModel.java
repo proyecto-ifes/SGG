@@ -18,8 +18,8 @@
  */
 package domainapp.application.services.homepage;
 
-import domainapp.modules.simple.dom.impl.persona.Persona;
-import domainapp.modules.simple.dom.impl.persona.PersonaMenu;
+import domainapp.modules.simple.dominio.persona.Persona;
+import domainapp.modules.simple.dominio.persona.PersonaMenu;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.Nature;
 import org.apache.isis.applib.services.i18n.TranslatableString;
