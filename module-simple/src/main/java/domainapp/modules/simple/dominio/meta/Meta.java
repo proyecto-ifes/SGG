@@ -1,14 +1,20 @@
 package domainapp.modules.simple.dominio.meta;
 
 import domainapp.modules.simple.dominio.enums.EstadoMeta;
+import domainapp.modules.simple.dominio.objetivos.Objetivo;
 import domainapp.modules.simple.dominio.socio.Socio;
 import lombok.AccessLevel;
 import org.apache.isis.applib.annotation.*;
 
+import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.repository.RepositoryService;
+import org.joda.time.LocalDate;
 
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @PersistenceCapable(identityType= IdentityType.DATASTORE, schema="gimnasio", table="metas")
@@ -32,6 +38,10 @@ public class Meta {
     @Property()
     private EstadoMeta estadoMeta;
 
+    @Persistent(mappedBy = "meta", dependentElement = "true")
+    @Collection()
+    private List<Objetivo> objetivos = new ArrayList<Objetivo>();
+
     public Meta() {
     }
 
@@ -46,6 +56,25 @@ public class Meta {
     }
 
     public String default0Update() { return getDescripcion(); }
+
+
+    @Action()
+    @ActionLayout(named = "Cargar Objetivo")
+    public Meta addObjetivo(
+            @ParameterLayout(named="Descripcion: ") final String descripcion,
+            @ParameterLayout(named="Fecha: ") final LocalDate fehcaObjetivo
+
+
+            ){
+        final Objetivo objetivo = factoryService.instantiate(Objetivo.class);
+        objetivo.setMeta(this);
+        objetivo.setDescripcion(descripcion);
+        objetivo.setFechaObjetivo(fehcaObjetivo);
+
+        getObjetivos().add(objetivo);
+        repositoryService.persist(objetivo);
+        return this;
+    }
 
     @Programmatic
     public void CambiarEstado(EstadoMeta estadoMeta){
@@ -65,6 +94,11 @@ public class Meta {
         CambiarEstado(EstadoMeta.Completado);
         return this;
     }
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    FactoryService factoryService;
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
