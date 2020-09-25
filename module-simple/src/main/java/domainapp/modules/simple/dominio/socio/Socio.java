@@ -2,7 +2,9 @@ package domainapp.modules.simple.dominio.socio;
 
 import domainapp.modules.simple.dominio.asistencia.AsistenciaSocio;
 import domainapp.modules.simple.dominio.enums.Estado;
+import domainapp.modules.simple.dominio.enums.EstadoMeta;
 import domainapp.modules.simple.dominio.enums.TipoTurno;
+import domainapp.modules.simple.dominio.meta.Meta;
 import domainapp.modules.simple.dominio.pagos.Pago;
 import domainapp.modules.simple.dominio.persona.Persona;
 import domainapp.modules.simple.dominio.rutina.Rutina;
@@ -66,6 +68,10 @@ public class Socio extends Persona {
     @Persistent(mappedBy = "socio", dependentElement = "true")
     @Collection()
     private List<AsistenciaSocio> asistenciaSocio = new ArrayList<AsistenciaSocio>();
+
+    @Persistent(mappedBy = "socio", dependentElement = "true")
+    @Collection()
+    private List<Meta> meta = new ArrayList<Meta>();
 
     public Socio() {
     }
@@ -175,6 +181,21 @@ public class Socio extends Persona {
         rutina.setEstado(estado);
         getRutina().add(rutina);
         repositoryService.persist(rutina);
+        return this;
+    }
+
+    @Action()
+    @ActionLayout(named = "Cargar Meta")
+    public Socio addMeta(
+            @ParameterLayout(named="Descripcion: ") final String descripcion,
+            @ParameterLayout(named="Estado: ") final EstadoMeta estadoMeta
+    ){
+        final Meta meta = factoryService.instantiate(Meta.class);
+        meta.setSocio(this);
+        meta.setDescripcion(descripcion);
+        meta.setEstadoMeta(estadoMeta);
+        getMeta().add(meta);
+        repositoryService.persist(meta);
         return this;
     }
 
