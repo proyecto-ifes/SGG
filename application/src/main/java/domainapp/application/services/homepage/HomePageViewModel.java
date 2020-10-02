@@ -34,7 +34,7 @@ import java.util.List;
 public class HomePageViewModel {
 
     public TranslatableString title() {
-        return TranslatableString.tr("{num} objects", "num", getObjects().size());
+        return TranslatableString.tr("Sistema Gestor de Gimnasios");
     }
 
     public List<Persona> getObjects() {
