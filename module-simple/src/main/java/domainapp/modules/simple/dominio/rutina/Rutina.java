@@ -27,7 +27,6 @@ public class Rutina {
     private Socio socio;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Title(prepend = "Rutina: ")
     @Property()
     private String nombre;
 
@@ -49,6 +48,10 @@ public class Rutina {
         this.nombre = nombre;
         this.estado = estado;
         this.ejercicio = ejercicio;
+    }
+
+    public String title() {
+        return getNombre();
     }
 
     @Action()

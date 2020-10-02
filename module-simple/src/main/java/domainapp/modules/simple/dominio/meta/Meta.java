@@ -29,7 +29,6 @@ public class Meta {
     private Socio socio;
 
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @Title(prepend = "Meta: ")
     @Property()
     private String descripcion;
 
@@ -43,6 +42,10 @@ public class Meta {
     private List<Objetivo> objetivos = new ArrayList<Objetivo>();
 
     public Meta() {
+    }
+
+    public String title() {
+        return getDescripcion();
     }
 
     @Action()

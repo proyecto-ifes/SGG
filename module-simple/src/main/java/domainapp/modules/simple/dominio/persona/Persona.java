@@ -41,7 +41,6 @@ public abstract class Persona{
     @javax.jdo.annotations.Column(allowsNull = "false")
     @lombok.NonNull
     @Property()
-    @Title(prepend = "Persona: ")
     private String nombre;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
@@ -73,6 +72,10 @@ public abstract class Persona{
     @lombok.NonNull
     @Property()
     private Estado estado;
+
+    public String title() {
+        return getApellido() + ", " + getNombre().substring(0,1);
+    }
 
     public Persona() {
     }
