@@ -29,8 +29,8 @@ public class SocioRepository {
             final Integer altura
     ) {
         final Socio object = new Socio(
-                nombre,
-                apellido,
+                nombre.toUpperCase(),
+                apellido.toUpperCase(),
                 dni,
                 telefono,
                 direccion,
@@ -57,7 +57,7 @@ public class SocioRepository {
         q = q.filter(
                 cand.apellido.indexOf(q.stringParameter("apellido")).ne(-1)
         );
-        return q.setParameter("apellido", apellido)
+        return q.setParameter("apellido", apellido.toUpperCase())
                 .executeList();
     }
 

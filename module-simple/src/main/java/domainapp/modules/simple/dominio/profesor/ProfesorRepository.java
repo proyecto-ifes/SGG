@@ -26,8 +26,8 @@ public class ProfesorRepository {
 
     ){
         final Profesor object = new Profesor(
-                nombre,
-                apellido,
+                nombre.toUpperCase(),
+                apellido.toUpperCase(),
                 dni,
                 telefono,
                 direccion,
@@ -49,7 +49,7 @@ public class ProfesorRepository {
         q = q.filter(
                 cand.apellido.indexOf(q.stringParameter("apellido")).ne(-1)
         );
-        return q.setParameter("apellido", apellido)
+        return q.setParameter("apellido", apellido.toUpperCase())
                 .executeList();
     }
 

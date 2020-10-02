@@ -38,8 +38,8 @@ public class SocioMenu {
     ) {
 
         return socioRepository.create(
-                nombre,
-                apellido,
+                nombre.toUpperCase(),
+                apellido.toUpperCase(),
                 dni,
                 telefono,
                 direccion,

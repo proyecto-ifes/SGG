@@ -34,8 +34,8 @@ public class ProfesorMenu {
             @ParameterLayout(named="Estado") final Estado estado
 
     ) {     return profesorRepository.create(
-                    nombre,
-                    apellido,
+                    nombre.toUpperCase(),
+                    apellido.toUpperCase(),
                     dni,
                     telefono,
                     direccion,
