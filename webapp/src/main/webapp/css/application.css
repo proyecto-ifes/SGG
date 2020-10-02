@@ -19,6 +19,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 /*-------------- BODY --------------*/
 
+div.tabGroups.tabbable ul.nav.nav-tabs li.tab2{
+    display:none;
+}
+
+
 li {
     margin-top: 6px;
     margin-bottom: 6px;

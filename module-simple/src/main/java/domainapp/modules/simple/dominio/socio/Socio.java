@@ -6,6 +6,7 @@ import domainapp.modules.simple.dominio.enums.EstadoMeta;
 import domainapp.modules.simple.dominio.enums.TipoTurno;
 import domainapp.modules.simple.dominio.meta.Meta;
 import domainapp.modules.simple.dominio.pagos.Pago;
+import domainapp.modules.simple.dominio.pagos.PagoRepository;
 import domainapp.modules.simple.dominio.persona.Persona;
 import domainapp.modules.simple.dominio.rutina.Rutina;
 import lombok.AccessLevel;
@@ -218,6 +219,13 @@ public class Socio extends Persona {
         return this;
     }
 
+
+    @NotPersistent
+    @CollectionLayout(named = "Pagos")
+    public List<Pago> getPagos() {
+        return pagoRepository.ListarPorSocio(this);
+    }
+
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
@@ -227,5 +235,10 @@ public class Socio extends Persona {
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     RepositoryService repositoryService;
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    PagoRepository pagoRepository;
 
 }

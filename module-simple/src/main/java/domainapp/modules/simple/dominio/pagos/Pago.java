@@ -5,17 +5,33 @@ import domainapp.modules.simple.dominio.socio.Socio;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.isis.applib.annotation.*;
-import org.apache.isis.schema.utils.jaxbadapters.JodaDateTimeStringAdapter;
 import org.isisaddons.wicket.fullcalendar2.cpt.applib.CalendarEvent;
 import org.isisaddons.wicket.fullcalendar2.cpt.applib.CalendarEventable;
 import org.joda.time.LocalDate;
 
 import javax.jdo.annotations.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 
 
 @PersistenceCapable(identityType= IdentityType.DATASTORE, schema="gimnasio", table="pagos")
 @javax.jdo.annotations.DatastoreIdentity(strategy=javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column="idPago")
+@Queries({
+        @Query(
+                name = "findByEstado", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.pagos.Pago "
+                        + "WHERE estado == :estado "
+                        + "ORDER BY fechaDePago DESC"),
+        @Query(
+                name = "findBySocio", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.pagos.Pago "
+                        + "WHERE socio == :socio && estado == 'Activo' "
+                        + "ORDER BY fechaDePago DESC")
+
+})
+
+
 @DomainObject(auditing = Auditing.ENABLED)
 @DomainObjectLayout()
 @lombok.Getter @lombok.Setter
