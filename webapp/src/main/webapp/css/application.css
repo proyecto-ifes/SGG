@@ -1,19 +1,115 @@
-/*
- *  Licensed to the Apache Software Foundation (ASF) under one
- *  or more contributor license agreements.  See the NOTICE file
- *  distributed with this work for additional information
- *  regarding copyright ownership.  The ASF licenses this file
- *  to you under the Apache License, Version 2.0 (the
- *  "License"); you may not use this file except in compliance
- *  with the License.  You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing,
- *  software distributed under the License is distributed on an
- *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- *  KIND, either express or implied.  See the License for the
- *  specific language governing permissions and limitations
- *  under the License.
- */
+body {
+    background-color: #FFF;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400 !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Lato', sans-serif;
+}
+
+/*//*-------------- HOME --------------*//*/
+
+/*-------------- MENU --------------*/
+
+.navbar{
+    font-family: 'Lato', sans-serif;
+    font-weight: 400 !important;
+}
+
+/*-------------- BODY --------------*/
+
+li {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+table {
+    border-collapse: collapse;
+    /*weight:100%;*/
+}
+
+table, th, td {
+    border: 1px;
+    border-style: solid;
+    border-color: lightgray;
+}
+th, td {
+    padding: 10px;
+}
+
+.btn-info{
+    background-color: #09396e;
+    border-color: #09396e;
+}
+
+.btn-info:hover {
+    background-color: #062445;
+    border-color: #062445;
+}
+
+button.btn.btn-sm.btn-info.dropdown-toggle{
+    background-color: #09396e;
+    border-color: #09396e;
+}
+
+button.btn.btn-sm.btn-info.dropdown-toggle:hover{
+    background-color: #062445;
+    border-color: #062445;
+}
+
+/*span.entityIconAndTitlePanel.entityIconAndTitleComponentType a.entityUrlSource{
+    display: ruby;
+    padding-left: 38%;
+}*/
+
+/*-------------- SIDEBAR --------------*/
+
+#sidebar-wrapper{
+    width: 23%;
+}
+
+.scalarValueWrapper{
+    padding-left: 18%;
+}
+
+/*-------------- FOOTER --------------*/
+
+footer.navbar.navbar-default.navbar-fixed-bottom{
+    background-color: #222222;
+    border-color: #121212;
+    bottom: 0;
+    margin-bottom: 0;
+    border-width: 1px 0 0;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+ul.nav.navbar-nav.navbar-right li a#aboutLink.navbar-right {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 1px;
+    padding-right 5px;
+    margin: 0;
+}
+
+ul.nav.navbar-nav.navbar-right li.dropdown a.dropdown-toggle{
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 1px;
+    padding-right 5px;
+    margin: 0;
+}
+
+/*-------------- BOTON --------------*/
+
+.btn{
+
+    color:#FFF;
+    border-radius: .25rem
+    }
+
+
 
