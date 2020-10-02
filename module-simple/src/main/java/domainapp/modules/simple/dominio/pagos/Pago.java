@@ -76,19 +76,19 @@ public class Pago implements CalendarEventable {
         this.setEstado(estado);
     }
 
-    @Action()
-    @ActionLayout(named = "Activar")
-    public Pago Activo(){
-        CambiarEstado(Estado.Activo);
+
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Activar/Desactivar")
+    public Pago Estado(){
+        if(this.getEstado()==Estado.Activo){
+            CambiarEstado(Estado.Inactivo);
+        }else {
+            CambiarEstado(Estado.Activo);
+        }
+
         return this;
     }
 
-    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "Desactivar")
-    public Pago Inactivo(){
-        CambiarEstado(Estado.Inactivo);
-        return this;
-    }
 
     @Programmatic
     @Override

@@ -94,17 +94,15 @@ public class Rutina {
         cambiarEstadoEjercicio();
     }
 
-    @Action()
-    @ActionLayout(named = "Activar")
-    public Rutina Activo(){
-        CambiarEstado(Estado.Activo);
-        return this;
-    }
-
     @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "Desactivar")
-    public Rutina Inactivo(){
-        CambiarEstado(Estado.Inactivo);
+    @ActionLayout(named = "Activar/Desactivar")
+    public Rutina Estado(){
+        if(this.getEstado()==Estado.Activo){
+            CambiarEstado(Estado.Inactivo);
+        }else {
+            CambiarEstado(Estado.Activo);
+        }
+
         return this;
     }
 

@@ -1,7 +1,9 @@
 package domainapp.modules.simple.dominio.meta;
 
+import domainapp.modules.simple.dominio.enums.Estado;
 import domainapp.modules.simple.dominio.enums.EstadoMeta;
 import domainapp.modules.simple.dominio.objetivos.Objetivo;
+import domainapp.modules.simple.dominio.pagos.Pago;
 import domainapp.modules.simple.dominio.socio.Socio;
 import lombok.AccessLevel;
 import org.apache.isis.applib.annotation.*;
@@ -84,19 +86,15 @@ public class Meta {
         this.setEstadoMeta(estadoMeta);
     }
 
-    @Action()
-    @ActionLayout(named = "Iniciado")
-    public Meta Iniciado(){
-        CambiarEstado(EstadoMeta.Iniciado);
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Completar Meta")
+    public Meta Estado(){
+        if(this.getEstadoMeta()== EstadoMeta.Iniciado){
+            CambiarEstado(EstadoMeta.Completado);
+        }
         return this;
     }
 
-    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "Completado")
-    public Meta Completado(){
-        CambiarEstado(EstadoMeta.Completado);
-        return this;
-    }
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

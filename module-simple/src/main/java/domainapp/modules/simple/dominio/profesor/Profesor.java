@@ -81,19 +81,18 @@ public class Profesor extends Persona {
         this.setEstado(estado);
     }
 
-    @Action()
-    @ActionLayout(named = "Activar")
-    public Profesor Activo(){
-        CambiarEstado(Estado.Activo);
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Activar/Desactivar")
+    public Profesor Estado(){
+        if(this.getEstado()==Estado.Activo){
+            CambiarEstado(Estado.Inactivo);
+        }else {
+            CambiarEstado(Estado.Activo);
+        }
+
         return this;
     }
 
-    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "Desactivar")
-    public Profesor Inactivo(){
-        CambiarEstado(Estado.Inactivo);
-        return this;
-    }
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

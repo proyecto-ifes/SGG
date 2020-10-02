@@ -205,19 +205,18 @@ public class Socio extends Persona {
         this.setEstado(estado);
     }
 
-    @Action()
-    @ActionLayout(named = "Activar")
-    public Socio Activo(){
-        CambiarEstado(Estado.Activo);
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    @ActionLayout(named = "Activar/Desactivar")
+    public Socio Estado(){
+        if(this.getEstado()==Estado.Activo){
+            CambiarEstado(Estado.Inactivo);
+        }else {
+            CambiarEstado(Estado.Activo);
+        }
+
         return this;
     }
 
-    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "Desactivar")
-    public Socio Inactivo(){
-        CambiarEstado(Estado.Inactivo);
-        return this;
-    }
 
 
     @NotPersistent
