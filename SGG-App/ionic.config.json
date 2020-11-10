@@ -1,0 +1,7 @@
+{
+  "name": "SGG-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

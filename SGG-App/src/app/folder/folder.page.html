@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+
+    <div *ngFor="let socio of socios; let ultimo = last;" [ngClass]="{ultimo:ultimo}">
+      <p>Nombre y apellido: {{socio.nombre | titlecase}} {{socio.apellido | titlecase}} </p>
+      <p>fecha Nacimiento: {{socio.fechaNac | date:'dd-MM-yyyy' }}</p>
+      <p>DNI: {{socio.dni}}</p>
+      <p>Estado: {{socio.estado}}</p>
+      <p>________________________</p>
+    </div>
+
+    <div *ngFor="let meta of metas ; let ultimo = last;" [ngClass]="{ultimo:ultimo}">
+      <p>Descripcion: {{ meta.descripcion}} </p>
+      <p>Estado: {{ meta.estadoMeta}} </p>
+      <p>________________________</p>
+    </div>
+
+  
+  
+  </div>
+</ion-content>
