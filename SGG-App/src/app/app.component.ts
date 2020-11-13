@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
       icon: 'clipboard'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
+      title: 'Mis Metas',
+      url: '/socio/metas',
       icon: 'heart'
     },
     {
