@@ -10,7 +10,8 @@ import { SocioService } from './servicios/socio.service';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { RutinasComponent } from './rutinas/rutinas.component';
+import { RutinasService } from './servicios/rutinas.service';
 
 
 
@@ -22,12 +23,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
     SocioRoutingModule
     
   ],
-  declarations: [SocioComponent ],
+  declarations: [SocioComponent, RutinasComponent],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SocioService
+    SocioService, RutinasService
   ]
 })
 export class SocioModule {}
