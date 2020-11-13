@@ -1,0 +1,62 @@
+ <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>MIS DATOS</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+
+<ion-content [fullscreen]="true">
+    <div id="container">     
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title> {{socios.nombre}}  {{socios.apellido}} </ion-card-title>
+          </ion-card-header>
+          <ion-item>
+            <ion-icon name="person" slot="start"></ion-icon>
+            <ion-label>Dni: {{socios.dni}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="calendar" slot="start"></ion-icon>
+            <ion-label>Fecha de Nacimiento: {{socios.fechaNac | date:'dd/MM/yyyy' }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="pin" slot="start"></ion-icon>
+            <ion-label>Direccion: {{socios.direccion}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="phone-portrait" slot="start"></ion-icon>
+            <ion-label>Telefono: {{socios.telefono}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="call" slot="start"></ion-icon>
+            <ion-label>Nro Emergencia: {{socios.nroEmergencia}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="body" slot="start"></ion-icon>
+            <ion-label>Peso: {{socios.peso}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="body" slot="start"></ion-icon>
+            <ion-label>Altura: {{socios.altura}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="clipboard" slot="start"></ion-icon>
+            <ion-label>Historia Clinica: {{socios.historiaClinica}}</ion-label>
+          </ion-item>
+          <ion-item>              
+            <ion-button slot="end">
+              Editar 
+            </ion-button>
+          </ion-item>
+        </ion-card>    
+    </div>
+</ion-content>
+
+
+
+  
+  
+
