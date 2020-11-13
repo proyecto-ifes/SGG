@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MIS RUTINAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div id="container"> 
+
+    <div *ngIf="ver">
+      <div *ngFor="let rutina of rutinas; let ultimo = last;" [ngClass]="{ultimo:ultimo}">   
+        <div *ngIf="rutina.estado == 'Activo'">   
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{rutina.nombre}}</ion-card-title>
+            </ion-card-header>  
+            <ion-item>
+              <ion-label>Ejercicios</ion-label>
+            <ion-button (click)="getEjercicios(rutina.$$instanceId)" slot="end">VER</ion-button>
+            </ion-item> 
+          </ion-card> 
+        </div>     
+      </div> 
+    </div>
+    
+    <div *ngIf="mostrar"> 
+      <div *ngFor="let ejercicio of ejercicios; let ultimo = last;" [ngClass]="{ultimo:ultimo}">
+        <div *ngIf="ejercicio.estado == 'Activo'"> 
+          <ion-card>
+            <ion-item>
+              <ion-label> Ejercicio: {{ejercicio.nombreEjercicio}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> Series: {{ejercicio.series}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> Repeticiones: {{ejercicio.repeticion}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> Peso: {{ejercicio.peso}} Kg.</ion-label>  
+            </ion-item>
+          </ion-card>
+        </div>  
+      </div> 
+      <ion-button (click)="volver()">volver</ion-button>
+    </div> 
+
+
+    
+  </div>
+</ion-content> 
