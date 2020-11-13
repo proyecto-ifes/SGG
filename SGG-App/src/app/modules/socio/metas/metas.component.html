@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MIS METAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div id="container"> 
+
+    <div *ngIf="ver">
+      <div *ngFor="let meta of metas; let ultimo = last;" [ngClass]="{ultimo:ultimo}">      
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{meta.descripcion}}</ion-card-title>
+            </ion-card-header>  
+            <ion-item>
+              <ion-label>Objetivos</ion-label>
+            <ion-button (click)="getObjetivos(meta.$$instanceId)" slot="end">VER</ion-button>
+            </ion-item> 
+          </ion-card> 
+      </div> 
+    </div>
+    
+    <div *ngIf="mostrar"> 
+      <div *ngFor="let objetivo of objetivos; let ultimo = last;" [ngClass]="{ultimo:ultimo}">
+          <ion-card>
+            <ion-item>
+              <ion-label> Descripcion: {{objetivo.descripcion}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> Fecha Objetivo: {{objetivo.fechaObjetivo}}</ion-label>
+            </ion-item>
+          </ion-card>
+      </div> 
+      <ion-button (click)="volver()">Volver</ion-button>
+    </div> 
+
+    
+  </div>
+</ion-content> 
