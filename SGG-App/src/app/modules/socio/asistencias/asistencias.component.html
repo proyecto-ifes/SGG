@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MIS ASISTENCIAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div id="container">    
+    <div *ngFor="let asistencia of asistencias; let ultimo = last;" [ngClass]="{ultimo:ultimo}"> 
+      <!-- <ion-card>
+        <ion-card-header>
+          <ion-card-title> {{asistencia.fechaYHora | date: 'medium' }} </ion-card-title>
+          <ion-datetime value="{{asistencia.fechaYHora}}" display-timezone="utc" disabled="true"></ion-datetime> 
+        </ion-card-header>
+        <ion-item>
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-label>Dni: {{socios.dni}}</ion-label>
+        </ion-item>
+      </ion-card> -->
+
+          
+      <ion-list>
+        <ion-item>
+          <ion-label>{{asistencia.fechaYHora |  date:'dd/MM/yyyy - h:mm a' }} <b>Tipo:</b> {{asistencia.tipoTurno }}  </ion-label>
+          <!-- <ion-label><b>Tipo:</b> {{asistencia.tipoTurno }} </ion-label> -->
+        </ion-item>
+      </ion-list>
+      
+    </div>
+  </div>
+</ion-content>
