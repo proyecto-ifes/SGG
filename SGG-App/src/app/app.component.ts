@@ -25,12 +25,12 @@ export class AppComponent implements OnInit {
     {
       title: 'Mis Metas',
       url: '/socio/metas',
-      icon: 'heart'
+      icon: 'medal'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Mis Asistencias',
+      url: '/socio/asistencias',
+      icon: 'calendar'
     }
   ];
 
