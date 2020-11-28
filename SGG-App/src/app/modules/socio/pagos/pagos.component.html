@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MIS PAGOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div id="container"> 
+
+    
+    <div *ngFor="let pago of pagos; let ultimo = last;" [ngClass]="{ultimo:ultimo}">  
+      <div *ngIf="ver">
+        <div *ngIf="pago.estado == 'Activo'">   
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{pago.fechaDePago |  date:'dd/MM/yyyy'}}</ion-card-title>
+            </ion-card-header>  
+            <ion-item>
+              <ion-label>Detalles</ion-label>
+            <ion-button (click)="detalles(pago.$$instanceId)" slot="end">VER</ion-button>
+            </ion-item> 
+          </ion-card> 
+        </div>
+      </div>
+
+      <div *ngIf="mostrar"> 
+      <div *ngIf="pago.$$instanceId == idDetalle"> 
+        <ion-card>
+          <ion-item>
+            <ion-label>Monto: ${{pago.monto}} </ion-label>
+          </ion-item> 
+          <ion-item>
+            <ion-label>Dias por Semana: {{pago.diasPorSem}} </ion-label>
+          </ion-item> 
+          <ion-item>
+            <ion-label>Proximo Pago: {{pago.proximoPago |  date:'dd/MM/yyyy'}}</ion-label>
+          </ion-item> 
+        </ion-card> 
+        <ion-button (click)="volver()">volver</ion-button>
+      </div>
+      </div>
+
+
+
+
+    </div> 
+    <!-- </div> -->
+    
+    <!-- <div *ngIf="mostrar"> 
+      <div *ngFor="let ejercicio of ejercicios; let ultimo = last;" [ngClass]="{ultimo:ultimo}">
+        <div *ngIf="ejercicio.estado == 'Activo'"> 
+          <ion-card>
+            <ion-item>
+              <ion-label> Ejercicio: {{ejercicio.nombreEjercicio}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> Series: {{ejercicio.series}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> Repeticiones: {{ejercicio.repeticion}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> Peso: {{ejercicio.peso}} Kg.</ion-label>  
+            </ion-item>
+          </ion-card>
+        </div>  
+      </div> 
+      <ion-button (click)="volver()">volver</ion-button>
+    </div>  -->
+
+
+    
+  </div>
+</ion-content> 
