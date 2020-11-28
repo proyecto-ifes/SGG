@@ -1,11 +1,15 @@
 package domainapp.modules.simple.dominio.socio;
 
 import domainapp.modules.simple.dominio.enums.Estado;
+import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
+import net.sf.jasperreports.engine.JRException;
 import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.value.Blob;
 import org.joda.time.LocalDate;
 import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.List;
 
 @DomainService(
@@ -79,8 +83,6 @@ public class SocioMenu {
         return socioRepository.findByDni(dni);
     }
 
-
-
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "2")
@@ -88,6 +90,12 @@ public class SocioMenu {
         return socioRepository.listAll();
     }
 
+    @Action()
+    @ActionLayout(named = "Exportar Listado a PDF")
+    public Blob ExportarListado() throws JRException, IOException {
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        return ejecutarReportes.ListadoSociosPDF(socioRepository.listAll());
+    }
 
     @Inject
     SocioRepository socioRepository;
