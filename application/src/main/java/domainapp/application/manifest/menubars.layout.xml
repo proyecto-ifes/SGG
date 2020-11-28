@@ -44,6 +44,9 @@
                 <mb3:serviceAction objectType="socio.SimpleObjectMenu" id="listAll">
                     <cpt:named>Listar Todos</cpt:named>
                 </mb3:serviceAction>
+                <mb3:serviceAction objectType="socio.SimpleObjectMenu" id="ExportarListado">
+                    <cpt:named>Exportar Listado a PDF</cpt:named>
+                </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>
         <mb3:menu>
