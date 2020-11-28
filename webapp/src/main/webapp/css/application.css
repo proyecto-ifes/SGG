@@ -72,6 +72,8 @@ button.btn.btn-sm.btn-info.dropdown-toggle:hover{
 
 #sidebar-wrapper{
     width: 23%;
+    max-height: calc(100vh - 9rem);
+    overflow-y: auto;
 }
 
 .scalarValueWrapper{
