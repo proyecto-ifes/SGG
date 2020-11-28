@@ -17,6 +17,8 @@ import { MetasService } from './servicios/metas.service';
 import { MetasComponent } from './metas/metas.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { AsistenciasService } from './servicios/asistencias.service';
+import { PagosComponent } from './pagos/pagos.component';
+import { PagosService } from './servicios/pagos.service';
 
 
 
@@ -29,12 +31,12 @@ import { AsistenciasService } from './servicios/asistencias.service';
     SocioRoutingModule
     
   ],
-  declarations: [SocioComponent, RutinasComponent, MetasComponent, AsistenciasComponent],
+  declarations: [SocioComponent, RutinasComponent, MetasComponent, AsistenciasComponent, PagosComponent],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SocioService, RutinasService, MetasService, AsistenciasService
+    SocioService, RutinasService, MetasService, AsistenciasService, PagosService
   ]
 })
 export class SocioModule {}

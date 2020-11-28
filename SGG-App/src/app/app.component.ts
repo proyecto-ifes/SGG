@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
       title: 'Mis Asistencias',
       url: '/socio/asistencias',
       icon: 'calendar'
+    },
+    {
+      title: 'Mis Pagos',
+      url: '/socio/pagos',
+      icon: 'cash'
     }
   ];
 
