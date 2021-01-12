@@ -20,9 +20,35 @@ export class SocioService {
 
   private Url = 'http://localhost:8080/restful/objects/gimnasio.socios/';
 
+  private urlUpdate = "http://localhost:8080/restful/objects/gimnasio.socios/";
+
 
   getSocio(id: number){
      return this.httpClient.get(this.Url+id, this.httpOptions);
+  }
+
+  updateSocio(id, socio){
+    let datos = {
+      "numeroDeTelefono:": {
+        "value": socio.telefono
+      },
+      "direccion:": {
+        "value": socio.direccion
+      },
+      "numeroDeEmergencia:": {
+        "value": socio.nroEmergencia
+      },
+      "peso:": {
+        "value": socio.peso
+      },
+      "altura:": {
+        "value": socio.altura
+      },
+      "historiaClinica:": {
+        "value": socio.historiaClinica
+      }
+    };
+    return this.httpClient.post(this.urlUpdate+id+"/actions/update/invoke", JSON.stringify(datos), this.httpOptions);
   }
   
 

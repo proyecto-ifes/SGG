@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { SocioRoutingModule } from './socio-routing.module';
 import { SocioComponent } from './socio/socio.component';
 import { SocioService } from './servicios/socio.service';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -28,7 +27,9 @@ import { PagosService } from './servicios/pagos.service';
     CommonModule,
     FormsModule,
     IonicModule.forRoot(),
-    SocioRoutingModule
+    SocioRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
     
   ],
   declarations: [SocioComponent, RutinasComponent, MetasComponent, AsistenciasComponent, PagosComponent],
