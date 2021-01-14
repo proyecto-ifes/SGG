@@ -18,6 +18,8 @@ import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { AsistenciasService } from './servicios/asistencias.service';
 import { PagosComponent } from './pagos/pagos.component';
 import { PagosService } from './servicios/pagos.service';
+import { CrearMetaComponent } from './crear-meta/crear-meta.component';
+import { CrearObjetivoComponent } from './crear-objetivo/crear-objetivo.component';
 
 
 
@@ -32,7 +34,7 @@ import { PagosService } from './servicios/pagos.service';
     FormsModule
     
   ],
-  declarations: [SocioComponent, RutinasComponent, MetasComponent, AsistenciasComponent, PagosComponent],
+  declarations: [SocioComponent, RutinasComponent, MetasComponent, AsistenciasComponent, PagosComponent, CrearMetaComponent, CrearObjetivoComponent],
   providers: [
     StatusBar,
     SplashScreen,

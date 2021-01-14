@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>NUEVO OBJETIVO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div id="container"> 
+
+    <form [formGroup]="objetivoForm" (ngSubmit)=submit()>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Crear nuevo objetivo</ion-card-title>
+        </ion-card-header>
+        <ion-item>
+          <ion-icon name="reader-outline" slot="start"></ion-icon>
+          Descripcion: &nbsp;
+          <ion-input type="text" formControlName="descripcion"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="reader-outline" slot="start"></ion-icon>
+          fecha: &nbsp;
+          <ion-input type="date" formControlName="fecha"></ion-input>
+        </ion-item>
+        <ion-item>              
+          <ion-button type="submit" slot="end">
+            Guardar 
+          </ion-button>
+        </ion-item>
+      </ion-card> 
+      </form>
+
+  </div>
+</ion-content> 

@@ -10,7 +10,7 @@
 
 <ion-content [fullscreen]="true">
   <div id="container"> 
-
+ 
     <div *ngIf="ver">
       <div *ngFor="let meta of metas; let ultimo = last;" [ngClass]="{ultimo:ultimo}">      
           <ion-card>
@@ -23,6 +23,9 @@
             </ion-item> 
           </ion-card> 
       </div> 
+      <div style="float: right; margin: 25px;">
+        <ion-fab-button (click)="nuevo();" ><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+      </div>
     </div>
     
     <div *ngIf="mostrar"> 
@@ -37,8 +40,14 @@
           </ion-card>
       </div> 
       <ion-button (click)="volver()">Volver</ion-button>
+      <div style="float: right; margin: 25px;">
+        <ion-fab-button (click)="nuevoObjetivo();" ><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+      </div>
     </div> 
 
-    
+
+
+  
+
   </div>
 </ion-content> 

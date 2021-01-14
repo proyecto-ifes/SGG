@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
+import { CrearMetaComponent } from './crear-meta/crear-meta.component';
+import { CrearObjetivoComponent } from './crear-objetivo/crear-objetivo.component';
 import { MetasComponent } from './metas/metas.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { RutinasComponent } from './rutinas/rutinas.component';
@@ -27,7 +29,16 @@ const routes: Routes = [
   {
     path: 'pagos',
     component: PagosComponent
+  },
+  {
+    path: 'crearMeta',
+    component: CrearMetaComponent
+  },
+  {
+    path: 'crearObjetivo/:id',
+    component: CrearObjetivoComponent
   }
+
 ];
 
 @NgModule({
