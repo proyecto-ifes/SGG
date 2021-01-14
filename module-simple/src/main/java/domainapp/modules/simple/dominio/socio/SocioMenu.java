@@ -4,13 +4,14 @@ import domainapp.modules.simple.dominio.enums.Estado;
 import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
 import net.sf.jasperreports.engine.JRException;
 import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 import org.apache.isis.applib.value.Blob;
 import org.joda.time.LocalDate;
-import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -28,7 +29,18 @@ public class SocioMenu {
     @Action(domainEvent = CreateDomainEvent.class)
     @MemberOrder(sequence = "1")
     public Socio create(
+            @Parameter(
+                    regexPattern = "[A-Za-z]+",
+                    regexPatternFlags = Pattern.CASE_INSENSITIVE,
+                    regexPatternReplacement = "Ingrese solo letras"
+            )
             @ParameterLayout(named="Nombre") final String nombre,
+
+            @Parameter(
+                    regexPattern = "[A-Za-z]+",
+                    regexPatternFlags = Pattern.CASE_INSENSITIVE,
+                    regexPatternReplacement = "Ingrese solo letras"
+            )
             @ParameterLayout(named="Apellido") final String apellido,
             @ParameterLayout(named="DNI") final Integer dni,
             @ParameterLayout(named="Telefono") final Integer telefono,

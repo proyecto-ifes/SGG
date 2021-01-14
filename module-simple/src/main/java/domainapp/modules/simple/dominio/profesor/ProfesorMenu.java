@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -22,10 +23,21 @@ import java.util.List;
 public class ProfesorMenu {
 
     public static class CreateDomainEvent extends ActionDomainEvent<ProfesorMenu> {}
-    @Action(domainEvent = ProfesorMenu.CreateDomainEvent.class)
+    @Action(domainEvent = CreateDomainEvent.class)
     @MemberOrder(sequence = "1")
     public Profesor create(
+            @Parameter(
+                    regexPattern = "[A-Za-z]+",
+                    regexPatternFlags = Pattern.CASE_INSENSITIVE,
+                    regexPatternReplacement = "Ingrese solo letras"
+            )
             @ParameterLayout(named="Nombre") final String nombre,
+
+            @Parameter(
+                    regexPattern = "[A-Za-z]+",
+                    regexPatternFlags = Pattern.CASE_INSENSITIVE,
+                    regexPatternReplacement = "Ingrese solo letras"
+            )
             @ParameterLayout(named="Apellido") final String apellido,
             @ParameterLayout(named="DNI") final Integer dni,
             @ParameterLayout(named="Telefono") final Integer telefono,

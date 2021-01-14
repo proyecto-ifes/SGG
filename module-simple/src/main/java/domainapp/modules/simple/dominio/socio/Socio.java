@@ -19,6 +19,7 @@ import org.joda.time.LocalDateTime;
 import javax.jdo.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @PersistenceCapable(identityType= IdentityType.DATASTORE, schema="gimnasio", table="socios")
 
@@ -36,12 +37,12 @@ import java.util.List;
 
 @DomainObject(auditing = Auditing.ENABLED)
 @DomainObjectLayout()  // causes UI events to be triggered
-@javax.jdo.annotations.Unique(name="Socio_dni_UNQ", members = {"dni"})
+@Unique(name="Socio_dni_UNQ", members = {"dni"})
 @lombok.Getter @lombok.Setter
 
 public class Socio extends Persona {
 
-    @javax.jdo.annotations.Column(allowsNull = "false")
+    @Column(allowsNull = "false")
     @lombok.NonNull
     @Property()
     private String historiaClinica;
@@ -50,11 +51,11 @@ public class Socio extends Persona {
     @Property()
     private Integer nroEmergencia;
 
-    @javax.jdo.annotations.Column(allowsNull = "true")
+    @Column(allowsNull = "true")
     @Property()
     private Integer peso;
 
-    @javax.jdo.annotations.Column(allowsNull = "true")
+    @Column(allowsNull = "true")
     @Property()
     private Integer altura;
 
@@ -173,6 +174,11 @@ public class Socio extends Persona {
     @Action()
     @ActionLayout(named = "Cargar Rutina")
     public Socio addRutina(
+            @Parameter(
+                    regexPattern = "[A-Za-z]+",
+                    regexPatternFlags = Pattern.CASE_INSENSITIVE,
+                    regexPatternReplacement = "Ingrese solo letras"
+            )
             @ParameterLayout(named="Nombre: ") final String nombre,
             @ParameterLayout(named="Estado: ") final Estado estado
     ){
@@ -217,8 +223,6 @@ public class Socio extends Persona {
         return this;
     }
 
-
-
     @NotPersistent
     @CollectionLayout(named = "Pagos")
     public List<Pago> getPagos() {
@@ -226,17 +230,17 @@ public class Socio extends Persona {
     }
 
     @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
+    @NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     FactoryService factoryService;
 
     @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
+    @NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     RepositoryService repositoryService;
 
     @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
+    @NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     PagoRepository pagoRepository;
 
