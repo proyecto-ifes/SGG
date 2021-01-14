@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dominio.reportes;
 import domainapp.modules.simple.dominio.enums.Estado;
+import domainapp.modules.simple.dominio.pagos.Pago;
 import domainapp.modules.simple.dominio.socio.Socio;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import org.joda.time.LocalDate;
 
 public class EjecutarReportes {
 
@@ -45,6 +47,33 @@ public class EjecutarReportes {
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(sociosReportes);
         return GenerarArchivoPDF("SociosReporte.jrxml", "Listado de Socios.pdf", ds);
+    }
+
+    public Blob ListadoPagosPDF(List<Pago> pagos) throws JRException, IOException{
+
+        List<PagosReporte> pagosReportes = new ArrayList<PagosReporte>();
+        pagosReportes.add(new PagosReporte());
+
+        for (Pago pago : pagos) {
+
+            int mes = LocalDate.now().getMonthOfYear();
+
+            if (pago.getEstado() == Estado.Activo && pago.getFechaDePago().getMonthOfYear() == mes){
+                PagosReporte pagosReporte = new PagosReporte();
+
+                pagosReporte.setNombre(pago.getSocio().getNombre());
+                pagosReporte.setApellido(pago.getSocio().getApellido());
+                pagosReporte.setDni(pago.getSocio().getDni());
+                pagosReporte.setMonto(pago.getMonto());
+                pagosReporte.setFechaDePago(pago.getFechaDePago().toString("dd-MM-yyyy"));
+
+                pagosReportes.add(pagosReporte);
+
+            }
+        }
+
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(pagosReportes);
+        return GenerarArchivoPDF("PagosReporte.jrxml", "Listado de Pagos.pdf", ds);
     }
 
     private Blob GenerarArchivoPDF(String archivoDesing, String nombreSalida, JRBeanCollectionDataSource ds) throws JRException, IOException{

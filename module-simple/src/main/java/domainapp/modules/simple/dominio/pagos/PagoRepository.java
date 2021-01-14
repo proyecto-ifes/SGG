@@ -8,6 +8,7 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.repository.RepositoryService;
+
 import javax.inject.Inject;
 import java.util.List;
 
@@ -34,6 +35,11 @@ public class PagoRepository {
                         "findBySocio",
                         "socio", socio));
     }
+
+    public List<Pago> listAll() {
+        return repositoryService.allInstances(Pago.class);
+    }
+
     @Inject
     RepositoryService repositoryService;
 
