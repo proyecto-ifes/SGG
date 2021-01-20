@@ -20,6 +20,9 @@ import { PagosComponent } from './pagos/pagos.component';
 import { PagosService } from './servicios/pagos.service';
 import { CrearMetaComponent } from './crear-meta/crear-meta.component';
 import { CrearObjetivoComponent } from './crear-objetivo/crear-objetivo.component';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './servicios/login.service';
+import { ToastService } from './servicios/toast.service';
 
 
 
@@ -34,12 +37,12 @@ import { CrearObjetivoComponent } from './crear-objetivo/crear-objetivo.componen
     FormsModule
     
   ],
-  declarations: [SocioComponent, RutinasComponent, MetasComponent, AsistenciasComponent, PagosComponent, CrearMetaComponent, CrearObjetivoComponent],
+  declarations: [SocioComponent, RutinasComponent, MetasComponent, AsistenciasComponent, PagosComponent, CrearMetaComponent, CrearObjetivoComponent, LoginComponent],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SocioService, RutinasService, MetasService, AsistenciasService, PagosService
+    SocioService, RutinasService, MetasService, AsistenciasService, PagosService, LoginService, ToastService
   ]
 })
 export class SocioModule {}
