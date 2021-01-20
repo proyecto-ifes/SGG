@@ -23,14 +23,14 @@ import org.apache.isis.applib.AppManifestAbstract2;
 /**
  * Used by <code>isis-maven-plugin</code> (build-time validation of the module) and also by module-level integration tests.
  */
-public class PersonaModuleManifest extends AppManifestAbstract2 {
+public class GimnasioModuleManifest extends AppManifestAbstract2 {
 
-    public static final Builder BUILDER = Builder.forModule(new PersonaModule())
+    public static final Builder BUILDER = Builder.forModule(new GimnasioModule())
             .withConfigurationProperty("isis.persistor.datanucleus.impl.datanucleus.schema.autoCreateAll","true")
             .withConfigurationProperty("isis.persistor.datanucleus.impl.datanucleus.identifier.case","MixedCase")
             ;
 
-    public PersonaModuleManifest() {
+    public GimnasioModuleManifest() {
         super(BUILDER);
     }
 

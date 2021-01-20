@@ -23,7 +23,7 @@ import org.apache.isis.applib.ModuleAbstract;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "module")
-public class PersonaModule extends ModuleAbstract {
+public class GimnasioModule extends ModuleAbstract {
 
     public static class PropertyDomainEvent<S,T>
             extends org.apache.isis.applib.services.eventbus.PropertyDomainEvent<S,T> {}

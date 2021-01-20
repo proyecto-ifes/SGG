@@ -19,7 +19,7 @@
 package domainapp.application;
 
 import com.google.common.collect.Sets;
-import domainapp.modules.simple.PersonaModule;
+import domainapp.modules.simple.GimnasioModule;
 import org.apache.isis.applib.Module;
 import org.apache.isis.applib.ModuleAbstract;
 
@@ -32,7 +32,7 @@ public class DomainAppApplicationModule extends ModuleAbstract {
 
     @Override
     public Set<Module> getDependencies() {
-        return Sets.<Module>newHashSet(new PersonaModule());
+        return Sets.<Module>newHashSet(new GimnasioModule());
     }
 
 }

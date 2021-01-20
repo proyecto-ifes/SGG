@@ -1,6 +1,6 @@
 package domainapp.application.services.health;
 
-import domainapp.modules.simple.dom.impl.persona.PersonaMenu;
+import domainapp.modules.simple.dominio.persona.PersonaMenu;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.services.health.Health;
