@@ -13,7 +13,6 @@ import { ToastService } from '../servicios/toast.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-
   public loginInvalido: boolean =false;
   username: string = ''
   password: any;
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-
+    public menuCtrl: MenuController,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
@@ -34,7 +33,9 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
-
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
   initForm(){
     this.loginForm = this.fb.group({
