@@ -10,15 +10,20 @@ import domainapp.modules.simple.dominio.pagos.PagoRepository;
 import domainapp.modules.simple.dominio.persona.Persona;
 import domainapp.modules.simple.dominio.rutina.Rutina;
 import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.factory.FactoryService;
 import org.apache.isis.applib.services.repository.RepositoryService;
+import org.isisaddons.module.security.dom.user.ApplicationUser;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import javax.jdo.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 @PersistenceCapable(identityType= IdentityType.DATASTORE, schema="gimnasio", table="socios")
@@ -74,6 +79,10 @@ public class Socio extends Persona {
     @Persistent(mappedBy = "socio", dependentElement = "true")
     @Collection()
     private List<Meta> meta = new ArrayList<Meta>();
+
+    @Getter
+    @Setter
+    private SortedSet<ApplicationUser> usuario = new TreeSet<>();
 
     public Socio() {
     }
@@ -133,6 +142,23 @@ public class Socio extends Persona {
     public Integer default3Update() { return getPeso(); }
     public Integer default4Update() { return getAltura(); }
     public String default5Update() { return getHistoriaClinica(); }
+
+    public void addToUser(final ApplicationUser applicationUser)
+    {
+        getUsuario().add(applicationUser);
+    }
+
+    public Socio addUser(@ParameterLayout(named="Usuario: ") final ApplicationUser user) {
+        addToUser(user);
+        return this;
+    }
+
+    @Action()
+    @MemberOrder(name="user", sequence = "1")
+    @ActionLayout(named = "Añadir Usuario")
+    public Socio AgregarUsuario (final ApplicationUser user ){
+        return  usuario.size() < 1 ? this.addUser(user) : null;
+    }
 
     @Action()
     @ActionLayout(named = "Dar Asistencia")
