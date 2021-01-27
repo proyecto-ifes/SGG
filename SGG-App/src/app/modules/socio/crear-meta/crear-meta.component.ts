@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MetasService } from '../servicios/metas.service';
 
 
@@ -11,12 +11,21 @@ import { MetasService } from '../servicios/metas.service';
 })
 export class CrearMetaComponent implements OnInit {
 
-  metaForm: FormGroup;
-  socioId = 1;
 
-  constructor(private fb:FormBuilder, private metaService: MetasService, private router: Router) { }
+  metaForm: FormGroup;
+  socioId: any;
+
+  constructor(
+    private fb:FormBuilder, 
+    private metaService: MetasService, 
+    private router: Router,  
+    private paramRoute: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+    this.paramRoute.paramMap.subscribe( param => {
+      this.socioId = param.get('id');      
+    }) 
     this.initForm();
   }
 
@@ -33,8 +42,7 @@ export class CrearMetaComponent implements OnInit {
          let metaNew = meta;
       }); 
     
-      // location.reload();
-    this.router.navigate(['/socio/metas']);
+      location.href= '/socio/metas/'+this.socioId;
   }
 
 }

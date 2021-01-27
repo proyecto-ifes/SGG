@@ -12,32 +12,32 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent implements OnInit {
 
   darkmode: boolean = false;
-
+  id = window.sessionStorage["id"] ;
   public selectedIndex = 0;
   public appPages = [
     {
       title: 'Mis Datos',
-      url: '/socio/socio',
+      url: '/socio/socio/'+this.id,
       icon: 'person'
     },
     {
       title: 'Mis Rutinas',
-      url: '/socio/rutinas',
+      url: '/socio/rutinas/'+this.id,
       icon: 'clipboard'
     },
     {
       title: 'Mis Metas',
-      url: '/socio/metas',
+      url: '/socio/metas/'+this.id,
       icon: 'medal'
     },
     {
       title: 'Mis Asistencias',
-      url: '/socio/asistencias',
+      url: '/socio/asistencias/'+this.id,
       icon: 'calendar'
     },
     {
       title: 'Mis Pagos',
-      url: '/socio/pagos',
+      url: '/socio/pagos/'+this.id,
       icon: 'cash'
     }
   ];
@@ -60,10 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // const path = window.location.pathname.split('socio/')[1];
-    // if (path !== undefined) {
-    //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    // }
+    
   }
 
   checkDark(){

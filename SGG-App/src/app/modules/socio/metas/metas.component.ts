@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MetasService } from '../servicios/metas.service';
 
 @Component({
@@ -9,24 +9,31 @@ import { MetasService } from '../servicios/metas.service';
 })
 export class MetasComponent implements OnInit {
 
-  id = 1;
+
+  socioId: any;
   metas: any[] = [];
   objetivos: any[] = [];
   mostrar: boolean = false;
   ver: boolean = true;
   idmeta: number;
 
-  constructor(private metasService: MetasService, private router: Router) { }
+  constructor(
+    private metasService: MetasService, 
+    private router: Router, 
+    private paramRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getMetas();
+    this.paramRoute.paramMap.subscribe( param => {
+      this.socioId = param.get('id');      
+    }) 
+    this.getMetas(this.socioId);
 
   }
 
 
 
-  getMetas(){
-    this.metasService.getMetas(this.id).subscribe((metas: any) => { 
+  getMetas(socioId){
+    this.metasService.getMetas(socioId).subscribe((metas: any) => { 
       this.metas = metas;
     });
   }
@@ -61,7 +68,7 @@ export class MetasComponent implements OnInit {
 
 
   nuevo(){
-    this.router.navigate(['/socio/crearMeta']);
+    this.router.navigate(['/socio/crearMeta/'+this.socioId]);
   }
   nuevoObjetivo(){
     this.router.navigate(['/socio/crearObjetivo/'+this.idmeta]);

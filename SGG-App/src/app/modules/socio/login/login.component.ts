@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AlertController, LoadingController, MenuController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { LoginService } from '../servicios/login.service';
 import { ToastService } from '../servicios/toast.service';
 
@@ -16,6 +15,7 @@ export class LoginComponent implements OnInit {
   public loginInvalido: boolean =false;
   username: string = ''
   password: any;
+  idSocio=1;
 
 
 
@@ -51,16 +51,29 @@ export class LoginComponent implements OnInit {
     }
     this.username= this.loginForm.controls.username.value,
     this.password= this.loginForm.controls.password.value    
-    this.loginService.realizaLogin(this.username, this.password)
+    this.loginService.realizaLogin(this.username, this.password, this.idSocio)
     .subscribe(
-    (response) => {   
+      (user: any) => {    
 
-    if (response) {         
-     
-      location.href = '/socio/socio';
-      this.GuardaUsuarioEnCookie(this.username);
-      this.toastService.presentToast('Bienvenido al sistema: '+this.username);
-    }
+        this.loginService.getUserSocio(this.idSocio).subscribe((nuevoUser) => {
+          
+          if(nuevoUser[0].name == this.username) {
+        
+            // variable global.
+            window.sessionStorage["id"] = this.idSocio; 
+           
+            location.href = '/socio/socio/'+this.idSocio;
+
+            this.GuardaUsuarioEnCookie(this.username);
+            this.toastService.presentToast('Bienvenido al sistema: '+this.username);
+          
+          }else{
+            this.idSocio++
+            this.submit();
+          }
+
+        })      
+        
     },
     (error) => {
       console.log(error);    

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RutinasService } from '../servicios/rutinas.service';
 
 @Component({
@@ -8,20 +9,27 @@ import { RutinasService } from '../servicios/rutinas.service';
 })
 export class RutinasComponent implements OnInit {
 
-  id = 1;
+  socioId: any;
   rutinas: any[] = [];
   ejercicios: any[] = [];
   mostrar: boolean = false;
   ver: boolean = true;
 
-  constructor(private rutinasService: RutinasService) { }
+  constructor(
+    private rutinasService: RutinasService, 
+    private paramRoute: ActivatedRoute
+    ) { }
 
   ngOnInit() {
-    this.getRutinas();
+
+    this.paramRoute.paramMap.subscribe( param => {
+      this.socioId = param.get('id');      
+    }) 
+    this.getRutinas(this.socioId);
   }
 
-  getRutinas(){
-    this.rutinasService.getRutinas(this.id).subscribe((rutinas: any) => {       
+  getRutinas(socioId){
+    this.rutinasService.getRutinas(socioId).subscribe((rutinas: any) => {       
       this.rutinas = rutinas;
     });
   }
@@ -53,6 +61,5 @@ export class RutinasComponent implements OnInit {
     }
 
   }
-
 
 }

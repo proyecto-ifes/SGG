@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Socio } from '../clase/socio';
 import { SocioService } from './../servicios/socio.service';
 
@@ -11,7 +12,7 @@ import { SocioService } from './../servicios/socio.service';
 })
 export class SocioComponent implements OnInit {
 
-  socioId = 1;
+  socioId: any;
   socios: Socio[] = [];
   mostrar: boolean = false;
   ver: boolean = true;
@@ -19,12 +20,21 @@ export class SocioComponent implements OnInit {
 
 
 
-  constructor(private socioService: SocioService, private fb: FormBuilder) { }
+  constructor(
+    private socioService: SocioService,
+    private fb: FormBuilder, 
+    private paramRoute: ActivatedRoute
+    ) { }
 
   ngOnInit() {
-    this.getSocio();
+    this.paramRoute.paramMap.subscribe( param => {
+      this.socioId = param.get('id');      
+    })   
+    this.getSocio(this.socioId);
     this.initForm();
+ 
   }
+
 
   initForm(){
     this.socioForm = this.fb.group({
@@ -37,8 +47,8 @@ export class SocioComponent implements OnInit {
     });
   }
 
-  getSocio(){
-    this.socioService.getSocio(this.socioId).subscribe((socio: Socio[]) => {     
+  getSocio(id){
+    this.socioService.getSocio(id).subscribe((socio: Socio[]) => {     
       this.socios = socio;
       this.socioForm.patchValue(this.socios);
     });
@@ -60,10 +70,8 @@ export class SocioComponent implements OnInit {
       this.socioService.updateSocio(this.socioId, this.socioForm.value).subscribe((socio )=>{
          let socioNew = socio;
       }); 
-    
       location.reload();
-    // this.router.navigate(['/cursos/curso-component'])
-
+  
   }
 
 }

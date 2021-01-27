@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PagosService } from '../servicios/pagos.service';
 
 @Component({
@@ -8,20 +9,26 @@ import { PagosService } from '../servicios/pagos.service';
 })
 export class PagosComponent implements OnInit {
 
-  id = 1;
+  socioId: any;
   idDetalle: number;
   pagos: any[] = [];
   mostrar: boolean = false;
   ver: boolean = true;
 
-  constructor(private pagosService: PagosService) { }
+  constructor(
+    private pagosService: PagosService, 
+    private paramRoute: ActivatedRoute
+    ) { }
 
   ngOnInit() {
-    this.getPagos();
+    this.paramRoute.paramMap.subscribe( param => {
+      this.socioId = param.get('id');      
+    }) 
+    this.getPagos(this.socioId);
   }
 
-  getPagos(){
-    this.pagosService.getPagos(this.id).subscribe((pagos: any) => {       
+  getPagos(socioId){
+    this.pagosService.getPagos(socioId).subscribe((pagos: any) => {       
       this.pagos = pagos;
     });
   }

@@ -16,7 +16,7 @@ export class LoginService {
   public URLservidor: String;
 
 
-  realizaLogin(username:String, password:String){
+  realizaLogin(username:String, password:String, id){
 
     if(window.localStorage.URLservidor){
       this.URLservidor = window.localStorage.URLservidor;
@@ -33,10 +33,26 @@ export class LoginService {
         'Authorization': 'Basic '+this.Auth64,
       })
     }
-    const Url = this.URLservidor+'/restful/objects/gimnasio.socios/';
+
   
-    return this.httpClient.get(Url+1, httpOptions);
+    const Url = this.URLservidor+'/restful/objects/gimnasio.socios/';
+    
+  
+    return this.httpClient.get(Url+id+'/collections/usuario', httpOptions);
     
 
   } 
+
+  getUserSocio(id){
+    const httpOptions2 = {
+      headers: new HttpHeaders({
+        'Accept':  'application/json;profile=urn:org.apache.isis/v1',
+        'Authorization': 'Basic aXNpcy1tb2R1bGUtc2VjdXJpdHktYWRtaW46cGFzcw==',
+      })
+    }
+    const Url2 = this.URLservidor+'/restful/objects/gimnasio.socios/';
+
+    return this.httpClient.get(Url2+id+'/collections/usuario', httpOptions2);
+
+  }
 }

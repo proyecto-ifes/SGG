@@ -13,12 +13,12 @@ export class CrearObjetivoComponent implements OnInit {
 
   idMeta: any;
   objetivoForm: FormGroup;
+  socioId = window.sessionStorage["id"] ;
 
   constructor(
     private fb: FormBuilder,
     private metaService: MetasService, 
-    private paramRoute: ActivatedRoute,
-    private router: Router
+    private paramRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -44,8 +44,6 @@ export class CrearObjetivoComponent implements OnInit {
        let objetivoNew = objetivo;
     }); 
   
-    // location.reload();
-  this.router.navigate(['/socio/metas']);
+    location.href = '/socio/metas/'+this.socioId ;
 }
-
 }

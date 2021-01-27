@@ -16,27 +16,27 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'socio',
+    path: 'socio/:id',
     component: SocioComponent
   },
   {
-    path: 'rutinas',
+    path: 'rutinas/:id',
     component: RutinasComponent
   },
   {
-    path: 'metas',
+    path: 'metas/:id',
     component: MetasComponent
   },
   {
-    path: 'asistencias',
+    path: 'asistencias/:id',
     component: AsistenciasComponent
   },
   {
-    path: 'pagos',
+    path: 'pagos/:id',
     component: PagosComponent
   },
   {
-    path: 'crearMeta',
+    path: 'crearMeta/:id',
     component: CrearMetaComponent
   },
   {
