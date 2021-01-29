@@ -53,26 +53,33 @@ export class LoginComponent implements OnInit {
     this.password= this.loginForm.controls.password.value    
     this.loginService.realizaLogin(this.username, this.password, this.idSocio)
     .subscribe(
-      (user: any) => {    
+      (socio: any) => {    
 
-        this.loginService.getUserSocio(this.idSocio).subscribe((nuevoUser) => {
-          
-          if(nuevoUser[0].name == this.username) {
-        
-            // variable global.
-            window.sessionStorage["id"] = this.idSocio; 
-           
-            location.href = '/socio/socio/'+this.idSocio;
+        this.loginService.getUserSocio(this.idSocio).subscribe((newSocio: any) => {
 
-            this.GuardaUsuarioEnCookie(this.username);
-            this.toastService.presentToast('Bienvenido al sistema: '+this.username);
+          if(newSocio.estado == 'Activo'){
+            if(newSocio.usuario[0].username == this.username) {
           
+              // variable global.
+              window.sessionStorage["id"] = this.idSocio; 
+            
+              location.href = '/socio/socio/'+this.idSocio;
+
+              this.GuardaUsuarioEnCookie(this.username);
+              this.toastService.presentToast('Bienvenido al sistema: '+this.username);
+            
+            }else{
+              this.idSocio++
+              this.submit();
+            };
           }else{
-            this.idSocio++
-            this.submit();
+            this.loginInvalido = true;
+            this.toastService.presentToast('El usuario se encuntra inactivo');
+            this.loginForm.reset();
+
           }
 
-        })      
+        });  
         
     },
     (error) => {

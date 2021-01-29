@@ -7,24 +7,14 @@ import { Injectable } from '@angular/core';
 export class LoginService {
 
   Auth64: string;
-  n: string;
+  ip = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) { }
-
-  public consulta : any;
-  public IPServidor: String = 'http://localhost:8080';
-  public URLservidor: String;
 
 
   realizaLogin(username:String, password:String, id){
 
-    if(window.localStorage.URLservidor){
-      this.URLservidor = window.localStorage.URLservidor;
-    }else{
-      this.URLservidor = this.IPServidor;
-    }
-
-    
+        
     this.Auth64 = btoa(username+":"+password);
  
     const httpOptions = {
@@ -35,7 +25,7 @@ export class LoginService {
     }
 
   
-    const Url = this.URLservidor+'/restful/objects/gimnasio.socios/';
+    const Url = this.ip+'/restful/objects/gimnasio.socios/';
     
   
     return this.httpClient.get(Url+id+'/collections/usuario', httpOptions);
@@ -50,9 +40,9 @@ export class LoginService {
         'Authorization': 'Basic aXNpcy1tb2R1bGUtc2VjdXJpdHktYWRtaW46cGFzcw==',
       })
     }
-    const Url2 = this.URLservidor+'/restful/objects/gimnasio.socios/';
+    const Url2 = this.ip+'/restful/objects/gimnasio.socios/';
 
-    return this.httpClient.get(Url2+id+'/collections/usuario', httpOptions2);
+    return this.httpClient.get(Url2+id, httpOptions2);
 
   }
 }
