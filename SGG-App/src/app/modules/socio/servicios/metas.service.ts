@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MetasService {
+  ip = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) { }
   
@@ -15,13 +16,13 @@ export class MetasService {
     })
   }
 
-  private Url = 'http://localhost:8080/restful/objects/gimnasio.socios/';
+  private Url = this.ip+'/restful/objects/gimnasio.socios/';
 
-  private UrlObjetivos = 'http://localhost:8080/restful/objects/gimnasio.metas/';
+  private UrlObjetivos = this.ip+'/restful/objects/gimnasio.metas/';
 
-  private addMeta = 'http://localhost:8080/restful/objects/gimnasio.socios/';
+  private addMeta = this.ip+'/restful/objects/gimnasio.socios/';
 
-  private addObjetivo ='http://localhost:8080/restful/objects/gimnasio.metas/';
+  private addObjetivo = this.ip+'/restful/objects/gimnasio.metas/';
 
   getMetas(id: number){
      return this.httpClient.get(this.Url+id+'/collections/meta', this.httpOptions);

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AsistenciasService {
+  ip = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) { }
   
@@ -15,7 +16,7 @@ export class AsistenciasService {
     })
   }
 
-  private Url = 'http://localhost:8080/restful/objects/gimnasio.socios/';
+  private Url = this.ip+'/restful/objects/gimnasio.socios/';
 
   getAsistencias(id: number){
      return this.httpClient.get(this.Url+id+'/collections/asistenciaSocio', this.httpOptions);

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RutinasService {
+  ip = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) { }
   
@@ -15,9 +16,9 @@ export class RutinasService {
     })
   }
 
-  private Url = 'http://localhost:8080/restful/objects/gimnasio.socios/';
+  private Url = this.ip+'/restful/objects/gimnasio.socios/';
 
-  private UrlEjercicios = 'http://localhost:8080/restful/objects/gimnasio.rutinas/';
+  private UrlEjercicios = this.ip+'/restful/objects/gimnasio.rutinas/';
 
 
 

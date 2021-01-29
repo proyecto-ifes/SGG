@@ -7,6 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class SocioService {
 
+  ip = 'http://localhost:8080';
+
   
   constructor(private httpClient: HttpClient) { }
 
@@ -18,9 +20,9 @@ export class SocioService {
     })
   }
 
-  private Url = 'http://localhost:8080/restful/objects/gimnasio.socios/';
+  private Url = this.ip+'/restful/objects/gimnasio.socios/';
 
-  private urlUpdate = "http://localhost:8080/restful/objects/gimnasio.socios/";
+  private urlUpdate = this.ip+"/restful/objects/gimnasio.socios/";
 
 
   getSocio(id: number){
